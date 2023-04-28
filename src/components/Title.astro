@@ -1,0 +1,11 @@
+---
+export interface Props {
+  color: string;
+}
+
+const { color } = Astro.props;
+---
+
+<h1 class={`${color} text-lg`}>
+  <slot />
+</h1>
