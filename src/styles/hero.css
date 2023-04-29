@@ -1,0 +1,115 @@
+:root {
+  --shadow: 0px 0 10px #a863c1, 0 0 20px #a863c1, 0 0 30px #a863c1, 0 0 20px #1e3f8f,
+    0 0 10px #1e3f8f, 0 0 20px #1e3f8f, 0 0 100px #1e3f8f, 0 0 150px #1e3f8f;
+
+  --shadow-max-glow: 0 0 20px #a863c1, 0 0 40px #a863c1, 0 0 60px #a863c1, 0 0 80px #1e3f8f,
+    0 0 20px #1e3f8f, 0 0 40px #1e3f8f, 0 0 200px #1e3f8f, 0 0 300px #1e3f8f;
+}
+
+#hero {
+  min-height: 100vh;
+  background-image: url('/background_gamejam.jpg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+#hero > div {
+  perspective: 1000px;
+  transform: rotateY(20deg);
+  position: relative;
+}
+
+#hero > div::before {
+  content: '';
+  position: absolute;
+  top: 105%;
+  width: 100%;
+  height: 5vh;
+  background: #a863c1;
+
+  transform: perspective(1.2em) rotateX(30deg) scale(1, 0.35) translateY(-0.2em);
+  filter: blur(1em);
+  opacity: 0.5;
+
+  animation: reflect-glow 2s infinite linear;
+}
+
+@keyframes reflect-glow {
+  0% {
+    filter: blur(1em);
+  }
+
+  50% {
+    filter: blur(2.5em);
+  }
+
+  100% {
+    filter: blur(1em);
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.game {
+  flex: 1;
+  font-size: 7vw;
+  font-weight: bold;
+  text-align: left;
+}
+
+.jam {
+  flex: 0 0 80%;
+  font-size: 6vw;
+  font-weight: bold;
+  text-align: left;
+}
+
+.numbers {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.numbers span {
+  font-size: 3vw;
+  line-height: 1;
+  font-weight: bold;
+}
+
+@keyframes pulse-glow {
+  0% {
+    text-shadow: var(--shadow);
+  }
+  20% {
+    text-shadow: var(--shadow-max-glow);
+  }
+  100% {
+    text-shadow: var(--shadow);
+  }
+}
+
+.game,
+.jam,
+.numbers span {
+  background-image: linear-gradient(to bottom right, #a863c1, #1e3f8f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: pulse-glow 2s infinite linear;
+  text-shadow: var(--shadow);
+}
