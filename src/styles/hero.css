@@ -8,8 +8,8 @@
 
 #hero {
   min-height: 100vh;
-  background-image: url('/background_gamejam.jpg');
-  background-size: contain;
+  background-image: url('/background_gamejam.webp');
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
