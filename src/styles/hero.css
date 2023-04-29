@@ -35,7 +35,7 @@
   background: #a863c1;
 
   transform: perspective(1.2em) rotateX(30deg) scale(1, 0.35) translateY(-0.2em);
-  filter: blur(1em);
+  filter: blur(1.8em);
   opacity: 0.5;
 
   animation: reflect-glow 2s infinite linear;
@@ -43,7 +43,7 @@
 
 @keyframes reflect-glow {
   0% {
-    filter: blur(1em);
+    filter: blur(1.8em);
   }
 
   50% {
@@ -51,7 +51,7 @@
   }
 
   100% {
-    filter: blur(1em);
+    filter: blur(1.8em);
   }
 }
 
