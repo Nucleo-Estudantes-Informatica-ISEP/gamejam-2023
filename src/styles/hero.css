@@ -24,7 +24,7 @@
   perspective: 1000px;
   transform: perspective(1000px);
 
-  position: relative;
+  position: fixed;
 }
 
 #hero > div::before {
@@ -60,22 +60,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 4em;
+  height: 5.5em;
 }
 
 .game {
   flex: 1;
-  font-size: 6em;
+  font-size: 9em;
   font-weight: bold;
   text-align: left;
+  letter-spacing: -0.1em;
 }
 
 .jam {
   flex: 0 0 80%;
-  font-size: 5em;
-  font-weight: bold;
+  font-size: 7em;
+  font-weight: 900;
   text-align: left;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
+  margin-left: 0.15em;
 }
 
 .numbers {
@@ -88,7 +90,7 @@
 }
 
 .numbers span {
-  font-size: 2.5em;
+  font-size: 3em;
   line-height: 0.8em;
   font-weight: bold;
 }
