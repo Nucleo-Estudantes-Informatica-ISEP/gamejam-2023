@@ -117,6 +117,7 @@
 .numbers span {
   -webkit-background-clip: text;
   background-clip: text;
+  /* color: transparent; */
   animation: pulse-glow 2s infinite ease-in-out;
   text-shadow: var(--shadow);
 }
