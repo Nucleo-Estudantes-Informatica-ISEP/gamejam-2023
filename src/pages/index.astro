@@ -1,11 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-import Hero from '../components/Hero.astro';
+import Hero from '../components/Hero';
 import Main from '../components/Main.astro';
 ---
 
 <Layout title="Gamejam 2023">
-  <Hero />
+  <Hero client:load />
   <Main />
 </Layout>
