@@ -12,8 +12,6 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="src/styles/main.css" />
-    <link rel="stylesheet" href="src/styles/hero.css" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -21,3 +19,11 @@ const { title } = Astro.props;
     <slot />
   </body>
 </html>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+  @font-face {
+    font-family: 'Autom';
+    src: url(/Autom-Bold.otf);
+  }
+</style>

@@ -14,3 +14,178 @@
     </div>
   </div>
 </main>
+
+<style>
+:root {
+  --shadow: 1px 1px 5px #fff, 0px 0 10px #a863c1, 0 0 20px #a863c1, 0 0 30px #a863c1,
+    0 0 20px #1e3f8f, 0 0 10px #1e3f8f, 0 0 20px #1e3f8f, 0 0 100px #1e3f8f, 0 0 150px #1e3f8f;
+
+  --shadow-max-glow: 1px 1px 5px #fff, 0 0 20px #a863c1, 0 0 40px #a863c1, 0 0 60px #a863c1,
+    0 0 80px #1e3f8f, 0 0 20px #1e3f8f, 0 0 40px #1e3f8f, 0 0 200px #1e3f8f, 0 0 300px #1e3f8f;
+}
+
+#hero {
+  min-height: 100vh;
+  background-image: url('/background_gamejam.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+#hero > div {
+  perspective: 1000px;
+  transform: perspective(1000px);
+
+  position: fixed;
+  font-family: 'Autom';
+}
+
+#hero > div::before {
+  content: '';
+  position: absolute;
+  top: 105%;
+  width: 100%;
+  height: 4em;
+  background: #a863c1;
+
+  transform: perspective(1.2em) rotateX(30deg) scale(1, 0.35) translateY(-0.2em);
+  filter: blur(2em);
+  opacity: 0.5;
+
+  animation: reflect-glow 2s infinite ease-in-out;
+}
+
+@keyframes reflect-glow {
+  0% {
+    filter: blur(2em);
+  }
+
+  50% {
+    filter: blur(2.5em);
+  }
+
+  100% {
+    filter: blur(2em);
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7em;
+}
+
+.row + .row {
+  margin: 0 2.5em;
+}
+
+.game {
+  flex: 1;
+  font-size: 8em;
+  font-weight: bold;
+  text-align: left;
+  letter-spacing: -1px;
+}
+
+.jam {
+  flex: 0 0 80%;
+  font-size: 6.5em;
+  font-weight: 900;
+  text-align: left;
+  letter-spacing: -0.75px;
+}
+
+.numbers {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.numbers span {
+  font-size: 3.5em;
+  line-height: 0.9em;
+  font-weight: bold;
+  letter-spacing: -5px;
+}
+
+@keyframes pulse-glow {
+  0% {
+    text-shadow: var(--shadow);
+  }
+  20% {
+    text-shadow: var(--shadow-max-glow);
+  }
+  100% {
+    text-shadow: var(--shadow);
+  }
+}
+
+.game,
+.jam,
+.numbers span {
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* color: transparent; */
+  animation: pulse-glow 2s infinite ease-in-out;
+  text-shadow: var(--shadow);
+}
+
+@media (min-width: 768px) {
+  .row {
+    height: 8em;
+  }
+
+  .row + .row {
+    margin: 0 1.2em;
+  }
+
+  .game {
+    font-size: 8.5em;
+  }
+
+  .jam {
+    font-size: 7em;
+    flex: 0 0 70%;
+  }
+
+  .numbers span {
+    font-size: 4.5em;
+    line-height: 0.8em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .row {
+    height: 8.5em;
+  }
+
+  .row + .row {
+    margin: 0 1.2em;
+  }
+
+  .game {
+    font-size: 9em;
+  }
+
+  .jam {
+    font-size: 7.5em;
+  }
+
+  .numbers span {
+    font-size: 5em;
+    line-height: 0.8em;
+  }
+}
+
+
+</style>
