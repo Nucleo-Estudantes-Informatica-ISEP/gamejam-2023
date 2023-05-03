@@ -61,16 +61,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 8em;
+  height: 7em;
 }
 
 .row + .row {
-  margin: 0 2em;
+  margin: 0 2.5em;
 }
 
 .game {
   flex: 1;
-  font-size: 12em;
+  font-size: 8em;
   font-weight: bold;
   text-align: left;
   letter-spacing: -1px;
@@ -78,7 +78,7 @@
 
 .jam {
   flex: 0 0 80%;
-  font-size: 10em;
+  font-size: 6.5em;
   font-weight: 900;
   text-align: left;
   letter-spacing: -0.75px;
@@ -94,8 +94,8 @@
 }
 
 .numbers span {
-  font-size: 6em;
-  line-height: 0.7em;
+  font-size: 3.5em;
+  line-height: 0.9em;
   font-weight: bold;
   letter-spacing: -5px;
 }
@@ -122,9 +122,9 @@
   text-shadow: var(--shadow);
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .row {
-    height: 3em;
+    height: 8em;
   }
 
   .row + .row {
@@ -132,22 +132,23 @@
   }
 
   .game {
-    font-size: 4em;
+    font-size: 8.5em;
   }
 
   .jam {
-    font-size: 3em;
+    font-size: 7em;
+    flex: 0 0 70%;
   }
 
   .numbers span {
-    font-size: 1.5em;
-    line-height: 0.9em;
+    font-size: 4.5em;
+    line-height: 0.8em;
   }
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1024px) {
   .row {
-    height: 4.5em;
+    height: 8.5em;
   }
 
   .row + .row {
@@ -155,15 +156,15 @@
   }
 
   .game {
-    font-size: 7em;
+    font-size: 9em;
   }
 
   .jam {
-    font-size: 6em;
+    font-size: 7.5em;
   }
 
   .numbers span {
-    font-size: 3em;
-    line-height: 0.9em;
+    font-size: 5em;
+    line-height: 0.8em;
   }
 }
