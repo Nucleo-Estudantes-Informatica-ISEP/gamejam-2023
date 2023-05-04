@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif']
       }
+    },
+    colors: {
+      'tv-background': '#101011',
     }
   },
   plugins: []

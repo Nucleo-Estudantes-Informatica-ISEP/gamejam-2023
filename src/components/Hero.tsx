@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
   const opacity = useTransform(scrollYProgress, input, opacityOutput);
 
   return (
-    <main className="bg-black min-h-screen">
+    <main className="bg-tv-background min-h-screen">
       <div id="hero">
         <motion.div
           style={{

@@ -6,7 +6,7 @@
 
 #hero {
   min-height: 100vh;
-  background-image: url('/background_gamejam.webp');
+  background-image: url('/tv.jpg');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -30,11 +30,11 @@
   content: '';
   position: absolute;
   top: 105%;
-  width: 100%;
+  width: 50%;
   height: 4em;
   background: #a863c1;
 
-  transform: perspective(1.2em) rotateX(30deg) scale(1, 0.35) translateY(-0.2em);
+  transform: translateX(50%) perspective(1.8em) rotateX(30deg) scale(1, 0.35) translateY(-0.2em);
   filter: blur(2em);
   opacity: 0.5;
 
@@ -59,16 +59,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 6em;
+  height: 5.5em;
 }
 
 .row + .row {
-  margin: 0 2.5em;
+  margin: 0 1.2em;
 }
 
 .game {
   flex: 1;
-  font-size: 8em;
+  font-size: 5em;
   font-weight: bold;
   text-align: left;
   letter-spacing: -1px;
@@ -76,7 +76,7 @@
 
 .jam {
   flex: 0 0 80%;
-  font-size: 6.5em;
+  font-size: 4em;
   font-weight: 900;
   text-align: left;
   letter-spacing: -0.75px;
@@ -92,8 +92,8 @@
 }
 
 .numbers span {
-  font-size: 3.5em;
-  line-height: 0.75em;
+  font-size: 3em;
+  line-height: 0.8em;
   font-weight: bold;
   letter-spacing: -5px;
 }
@@ -118,6 +118,31 @@
   /* color: transparent; */
   animation: pulse-glow 2s infinite ease-in-out;
   text-shadow: var(--shadow);
+  
+}
+
+@media (min-width: 500px) {
+  .row {
+    height: 6em;
+  }
+
+  .row + .row {
+    margin: 0 1.2em;
+  }
+
+  .game {
+    font-size: 5.5em;
+  }
+
+  .jam {
+    font-size: 4em;
+  }
+
+  .numbers span {
+    font-size: 3.5em;
+    line-height: 0.8em;
+  }
+
 }
 
 @media (min-width: 768px) {
@@ -130,16 +155,15 @@
   }
 
   .game {
-    font-size: 8.5em;
+    font-size: 6em;
   }
 
   .jam {
-    font-size: 7em;
-    flex: 0 0 70%;
+    font-size: 4.5em;
   }
 
   .numbers span {
-    font-size: 4.5em;
+    font-size: 4em;
     line-height: 0.8em;
   }
 }
@@ -154,15 +178,16 @@
   }
 
   .game {
-    font-size: 9em;
+    font-size: 6.5em;
   }
 
   .jam {
-    font-size: 7.5em;
+    font-size: 5em;
+    flex: 0 0 75%;
   }
 
   .numbers span {
-    font-size: 5em;
+    font-size: 4.5em;
     line-height: 0.8em;
+  }  
   }
-}
