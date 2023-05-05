@@ -31,10 +31,10 @@
   position: absolute;
   top: 105%;
   width: 50%;
-  height: 4em;
+  height: 3em;
   background: #a863c1;
 
-  transform: translateX(50%) perspective(1.8em) rotateX(30deg) scale(1, 0.35) translateY(-0.2em);
+  transform: translateX(50%) perspective(1.8em) rotateX(30deg) scale(1, 0.35) translateY(-0.1em);
   filter: blur(2em);
   opacity: 0.5;
 
@@ -59,7 +59,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5.5em;
+  height: 4.5em;
 }
 
 .row + .row {
@@ -123,7 +123,7 @@
 
 @media (min-width: 500px) {
   .row {
-    height: 6em;
+    height: 5em;
   }
 
   .row + .row {
@@ -147,7 +147,7 @@
 
 @media (min-width: 768px) {
   .row {
-    height: 6.5em;
+    height: 5.5em;
   }
 
   .row + .row {
@@ -170,7 +170,7 @@
 
 @media (min-width: 1024px) {
   .row {
-    height: 7em;
+    height: 6em;
   }
 
   .row + .row {

@@ -5,11 +5,9 @@ import '../styles/hero.css';
 const Hero: React.FC = () => {
   const { scrollYProgress } = useScroll();
 
-  const input = [0, 0.75, 1];
-  const scaleOutput = [1, 4, 6];
+  const input = [0, 0.4, 1];
   const opacityOutput = [1, 0, 0];
 
-  const scale = useTransform(scrollYProgress, input, scaleOutput);
   const opacity = useTransform(scrollYProgress, input, opacityOutput);
 
   return (
@@ -21,7 +19,6 @@ const Hero: React.FC = () => {
             transform: 'perspective(1000px)',
             position: 'fixed',
             fontFamily: 'Autom',
-            scale,
             opacity
           }}>
           <div>
