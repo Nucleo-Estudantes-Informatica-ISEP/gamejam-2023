@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { motion } from 'framer-motion';
 
-import dinoImage from '../../public/dino.gif';
+import dinoImage from '/dino.gif';
 import paddingNumber from '../utils/paddingNumber';
 
 import '../styles/Countdown.css';
@@ -172,11 +172,11 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
           {renderDigits(timeRemaining.hours, 2)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">minutos</h2>
+          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">min</h2>
           {renderDigits(timeRemaining.minutes, 3)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">segundos</h2>
+          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">seg</h2>
           {renderDigits(timeRemaining.seconds, 4)}
         </div>
       </div>
