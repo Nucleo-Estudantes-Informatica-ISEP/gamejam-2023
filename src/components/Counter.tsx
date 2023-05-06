@@ -14,7 +14,8 @@ interface Props {
 
 const Counter: React.FC<Props> = ({ targetDate }) => {
   const NUMBER_POSITIONS = [30, 280, 530, 780];
-  const JUMPING_NUMBERS_ORDER = [-1, 2, -1, 4, 4, 4, 3, 2, 1];
+  const JUMPING_NUMBERS_ORDER = [2, 4, 3, 1, 2, 4, 3, 1];
+  const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val) => [-1, val]);
 
   const x = [
     NUMBER_POSITIONS[0],
@@ -27,8 +28,8 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     200,
     NUMBER_POSITIONS[3] - 40,
     NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[3],
-    700,
+    NUMBER_POSITIONS[3] + 40,
+    600,
     500,
     300,
     NUMBER_POSITIONS[3],
@@ -40,20 +41,20 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     NUMBER_POSITIONS[0],
     150,
     200,
-    NUMBER_POSITIONS[3] - 20,
-    NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[3] + 10,
+    NUMBER_POSITIONS[2] - 20,
+    NUMBER_POSITIONS[2],
+    NUMBER_POSITIONS[2],
+    NUMBER_POSITIONS[2] + 10,
     200,
-    NUMBER_POSITIONS[2] - 40,
-    NUMBER_POSITIONS[2],
-    NUMBER_POSITIONS[2],
+    NUMBER_POSITIONS[0] - 40,
+    NUMBER_POSITIONS[0],
+    NUMBER_POSITIONS[0] + 80,
     700,
     500,
     300,
-    NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[3] - 40,
+    NUMBER_POSITIONS[0],
+    NUMBER_POSITIONS[0],
+    NUMBER_POSITIONS[0] - 40,
     200,
     300,
     NUMBER_POSITIONS[0]
@@ -66,12 +67,10 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     return val < x[i - 1] ? 180 : 0;
   });
 
-  console.log(rotateY);
-
   const dinosaurAnimation = {
     x,
     y: [0, -40, 0],
-    rotateY: extendAnimationKeyframes(rotateY, 2)
+    rotateY: extendAnimationKeyframes(rotateY, 4)
   };
 
   const dinosaurTransition = {
@@ -90,7 +89,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     },
     rotateY: {
       ease: 'linear',
-      duration: 10,
+      duration: 20,
       repeat: Infinity
     }
   };
@@ -125,14 +124,14 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentJumpingIndex((prev) => (prev + 1) % (JUMPING_NUMBERS_ORDER.length + 1));
+      setCurrentJumpingIndex((prev) => (prev + 1) % (jumpingNumbersAnimation.length + 1));
     }, 2500);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    setJumpingIndex(JUMPING_NUMBERS_ORDER[currentJumpingIndex]);
+    setJumpingIndex(jumpingNumbersAnimation[currentJumpingIndex]);
   }, [currentJumpingIndex]);
 
   const renderDigits = (value: number, index: number) => {
