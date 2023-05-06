@@ -1,0 +1,12 @@
+---
+import Counter from './Counter';
+
+const targetDate = new Date('2023-08-01T00:00:00+01:00');
+---
+
+<div class="min-h-screen flex flex-col items-center justify-center">
+  <h1 class="text-4xl mb-6">Coming soon...</h1>
+  <div>
+    <Counter client:load targetDate={targetDate} />
+  </div>
+</div>
