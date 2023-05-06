@@ -1,107 +1,84 @@
-    .countdown {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.5rem;
-      font-size: 1rem;
-    }
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 1rem;
+}
 
-    .countdown-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .countdown-label {
-      font-size: 2rem;
-      font-family: sans-serif;
-      letter-spacing: -1px;
-      margin-bottom: 1rem;
-    }
-    
-    .countdown-value {
-      letter-spacing: -1px;
-      font-family: sans-serif;
-      display: block;
-      font-size: 4rem; 
-    }
- 
-    .dinosaur-item {
-      display: flex;
-      width: 10%;
-      height: 10%;
-      justify-content: center;
-      align-items: center;
+.countdown-label {
+  font-size: 2rem;
+  font-family: sans-serif;
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+}
 
-      animation: translate 10s linear infinite;
-    }
+.countdown-value {
+  letter-spacing: -1px;
+  font-family: sans-serif;
+  display: block;
+  font-size: 4rem;
+}
 
-    @keyframes translate {
-      0% {
-        transform: translateX(0);
-      }
-      50% {
-        transform: translateX(150vh);
-      }
-      100% {
-        transform: translateX(0);
-      } 
-    }
+@media (min-width: 360px) {
+  .dinosaur-item {
+    width: 6%;
+    height: 6%;
+  }
 
-    @media (min-width: 360px) {
-      .dinosaur-item {
-        width: 6%;
-        height: 6%;
-      }
+  .countdown {
+    font-size: 1rem;
+  }
 
-      .countdown {
-        font-size: 1rem;
-      }
+  .countdown-label {
+    font-size: 2rem;
+  }
 
-      .countdown-label {
-        font-size: 2rem;
-      }
+  .countdown-value {
+    font-size: 4rem;
+  }
+}
 
-      .countdown-value {
-        font-size: 4rem;
-      }
+@media (min-width: 768px) {
+  .dinosaur-item {
+    width: 8%;
+    height: 8%;
+  }
 
-    }
+  .countdown {
+    font-size: 1.5rem;
+  }
 
-    @media (min-width: 768px) {
-      .dinosaur-item {
-        width: 8%;
-        height: 8%;
-      }
+  .countdown-label {
+    font-size: 3rem;
+  }
 
-      .countdown {
-        font-size: 1.5rem;
-      }
+  .countdown-value {
+    font-size: 6rem;
+  }
+}
 
-      .countdown-label {
-        font-size: 3rem;
-      }
+@media (min-width: 1024px) {
+  .dinosaur-item {
+    width: 15%;
+    height: 15%;
+  }
 
-      .countdown-value {
-        font-size: 6rem;
-      }
-    }
+  .countdown {
+    font-size: 2rem;
+  }
 
-    @media (min-width: 1024px) {
-      .dinosaur-item {
-        width: 10%;
-        height: 10%;
-      }
+  .countdown-label {
+    font-size: 4rem;
+  }
 
-      .countdown {
-        font-size: 2rem;
-      }
-
-      .countdown-label {
-        font-size: 4rem;
-      }
-
-      .countdown-value {
-        font-size: 7rem;
-      }
-    }
+  .countdown-value {
+    font-size: 7rem;
+  }
+}

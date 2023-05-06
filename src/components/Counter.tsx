@@ -1,13 +1,80 @@
 import { useEffect, useState } from 'react';
+
 import { motion } from 'framer-motion';
-import '../styles/Countdown.css';
+
 import dinoImage from '../../public/dino.gif';
+import paddingNumber from '../utils/paddingNumber';
+
+import '../styles/Countdown.css';
+import addAnimationKeyframes from '../utils/addAnimationKeyframes';
 
 interface Props {
   targetDate: Date;
 }
 
 const Counter: React.FC<Props> = ({ targetDate }) => {
+  const NUMBER_POSITIONS = [30, 280, 530, 780];
+
+  const x = [
+    0,
+    150,
+    200,
+    NUMBER_POSITIONS[0] - 20,
+    NUMBER_POSITIONS[0],
+    NUMBER_POSITIONS[0],
+    NUMBER_POSITIONS[0] + 10,
+    200,
+    NUMBER_POSITIONS[2] - 40,
+    NUMBER_POSITIONS[2],
+    NUMBER_POSITIONS[2],
+    700,
+    500,
+    300,
+    NUMBER_POSITIONS[3] - 40,
+    NUMBER_POSITIONS[3],
+    NUMBER_POSITIONS[3],
+    200,
+    300,
+    0
+  ];
+
+  const rotateY: number[] = x.map((val, i) => {
+    if (i === 0) return 0;
+    if (i === x.length - 1) return 0;
+
+    return val < x[i - 1] ? 180 : 0;
+  });
+
+  console.log(rotateY);
+
+  const dinosaurAnimation = {
+    x,
+    y: [0, -40, 0],
+    rotateY: addAnimationKeyframes(rotateY, 2)
+  };
+
+  const dinosaurTransition = {
+    y: {
+      delay: 2.5,
+      repeatDelay: 5,
+      duration: 0.4,
+      ease: 'linear',
+      repeat: Infinity
+    },
+    x: {
+      duration: 10,
+      repeat: Infinity,
+      ease: 'linear',
+      repeatType: 'reverse'
+    },
+    rotateY: {
+      ease: 'linear',
+      duration: 10, // hack to make repeat delay work
+      repeat: Infinity,
+      repeatType: 'reverse'
+    }
+  };
+
   const calculateTimeRemaining = () => {
     const totalSeconds = Math.round((targetDate.getTime() - new Date().getTime()) / 1000);
 
@@ -37,57 +104,59 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setJumpingIndex((prev) => (prev + 1) % 4);
+      setJumpingIndex((prev) => (prev + 1) % (4 + 1));
     }, 1000);
 
     return () => clearInterval(interval);
   }, []);
-  const renderDigits = (value: number, index: number, isJumping: boolean) => {
-    const numberTransition = {
+
+  const renderDigits = (value: number, index: number) => {
+    const transition = {
+      type: 'spring',
       y: {
-        duration: 0.8,
-        repeat: Infinity,
+        duration: 0.4,
         ease: 'linear'
       }
     };
-
-    const applyTransition = isJumping && Math.random() < 0.5;
 
     return (
       <motion.span
         className="countdown-value"
         key={index}
-        transition={applyTransition ? numberTransition : undefined}
-        animate={applyTransition ? { y: ['0px', '-60px', '0px'] } : {}}>
-        {value < 10 ? `${value}` : value}
+        transition={transition}
+        animate={jumpingIndex === index ? { y: [0, -40, 0] } : { y: 0 }}>
+        {paddingNumber(value, 2)}
       </motion.span>
     );
   };
 
   return (
-    <>
-      <div className="countdown">
-        <div className="countdown-item">
-          <span className="countdown-label">DIAS</span>
-          {renderDigits(timeRemaining.days, 1, jumpingIndex === 0)}
+    <div className="w-full mx-auto">
+      <div className="flex items-center justify-center w-full border">
+        <div className="flex flex-col items-center justify-center w-full">
+          <h2 className="text-4xl font-black uppercase">dias</h2>
+          {renderDigits(timeRemaining.days, 1)}
         </div>
-        <div className="countdown-item">
-          <span className="countdown-label">HORAS</span>
-          {renderDigits(timeRemaining.hours, 2, jumpingIndex === 1)}
+        <div className="flex flex-col items-center justify-center w-full">
+          <h2 className="text-4xl font-black uppercase">horas</h2>
+          {renderDigits(timeRemaining.hours, 2)}
         </div>
-        <div className="countdown-item">
-          <span className="countdown-label">MIN</span>
-          {renderDigits(timeRemaining.minutes, 3, jumpingIndex === 2)}
+        <div className="flex flex-col items-center justify-center w-full">
+          <h2 className="text-4xl font-black uppercase">minutos</h2>
+          {renderDigits(timeRemaining.minutes, 3)}
         </div>
-        <div className="countdown-item">
-          <span className="countdown-label">SEG</span>
-          {renderDigits(timeRemaining.seconds, 4, jumpingIndex === 3)}
+        <div className="flex flex-col items-center justify-center w-full">
+          <h2 className="text-4xl font-black uppercase">segundos</h2>
+          {renderDigits(timeRemaining.seconds, 4)}
         </div>
       </div>
-      <div className="dinosaur-item">
+      <motion.div
+        transition={dinosaurTransition}
+        animate={dinosaurAnimation}
+        className="dinosaur-item">
         <img src={dinoImage} alt="dinosaur" />
-      </div>
-    </>
+      </motion.div>
+    </div>
   );
 };
 
