@@ -7,60 +7,66 @@ import paddingNumber from '../utils/paddingNumber';
 
 import '../styles/Countdown.css';
 import extendAnimationKeyframes from '../utils/extendAnimationKeyframes';
+import useWindowDimensions from '../utils/useWindowDimensions';
 
 interface Props {
   targetDate: Date;
 }
 
+const random = () => Math.floor(Math.random() * 1.3) + 1;
+
+const JUMPING_NUMBERS_ORDER = [2, 4, 3, 1, 2, 4, 3, 1];
+
 const Counter: React.FC<Props> = ({ targetDate }) => {
-  const NUMBER_POSITIONS = [30, 280, 530, 780];
-  const JUMPING_NUMBERS_ORDER = [2, 4, 3, 1, 2, 4, 3, 1];
   const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val, i) =>
     i === JUMPING_NUMBERS_ORDER.length - 1 ? [val] : [val, -1]
   );
-
+  const { width } = useWindowDimensions();
+  const NUMBER_POSITIONS = [width * 0.02, width * 0.25, width * 0.4, width * 0.6];
   const x = [
     NUMBER_POSITIONS[1],
-    NUMBER_POSITIONS[1] + 10,
-    200,
-    NUMBER_POSITIONS[3] - 40,
+    NUMBER_POSITIONS[1] * 1.1,
+    NUMBER_POSITIONS[1] * 1.2,
+    NUMBER_POSITIONS[2] * 1.3,
     NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[3] + 40,
-    600,
-    500,
-    300,
+    NUMBER_POSITIONS[1] * 1.2,
+    NUMBER_POSITIONS[1] * 1.2,
+    NUMBER_POSITIONS[1] * 1.3,
+    NUMBER_POSITIONS[2] * 1.4,
     NUMBER_POSITIONS[3],
     NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[3] - 40,
-    200,
-    300,
+    NUMBER_POSITIONS[2] * 1.7,
+    NUMBER_POSITIONS[1] * 1.6,
+    NUMBER_POSITIONS[1] * 1.2,
     NUMBER_POSITIONS[0],
     NUMBER_POSITIONS[0],
-    150,
-    200,
-    NUMBER_POSITIONS[2] - 20,
+    NUMBER_POSITIONS[0] * 1.3,
+    NUMBER_POSITIONS[0] * 1.1,
+    NUMBER_POSITIONS[1] * 1.4,
     NUMBER_POSITIONS[2],
     NUMBER_POSITIONS[2],
-    NUMBER_POSITIONS[2] + 10,
-    200,
-    NUMBER_POSITIONS[0] - 40,
+    NUMBER_POSITIONS[2] * 1.2,
+    NUMBER_POSITIONS[2] * 1.7,
+    NUMBER_POSITIONS[0] * 1.9,
     NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0] + 80,
-    700,
-    500,
-    300,
-    NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0] - 40,
-    200,
-    300,
+    NUMBER_POSITIONS[0] * 1.4,
+    NUMBER_POSITIONS[1] * 1.5,
+    NUMBER_POSITIONS[2] * 1.2,
+    NUMBER_POSITIONS[2] * 1.2,
     NUMBER_POSITIONS[0],
     NUMBER_POSITIONS[0],
-    150,
-    200,
-    NUMBER_POSITIONS[1] + 20,
+    NUMBER_POSITIONS[0] * 1.8,
+    NUMBER_POSITIONS[1] * 1.1,
+    NUMBER_POSITIONS[1] * 1.6,
+    NUMBER_POSITIONS[0],
+    NUMBER_POSITIONS[0],
+    NUMBER_POSITIONS[0] * 1.7,
+    NUMBER_POSITIONS[0] * 1.2,
+    NUMBER_POSITIONS[1] * 1.3,
     NUMBER_POSITIONS[1]
   ];
+
+  console.log(x);
 
   const rotateY: number[] = x.map((val, i) => {
     if (i === 0) return 0;
@@ -102,9 +108,9 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     }
 
     const days = Math.floor(totalSeconds / (3600 * 24));
-    const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = Math.floor(totalSeconds % 60);
+    const hours = Math.floor(days / 24);
+    const minutes = Math.floor(hours / 60);
+    const seconds = Math.floor(minutes % 60);
 
     return { days, hours, minutes, seconds };
   };
@@ -145,10 +151,10 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
     return (
       <motion.span
-        className="countdown-value"
+        className="tracking-tight text-2xl md:text-4xl lg:text-8xl my-4 font-bold"
         key={index}
         transition={transition}
-        animate={jumpingIndex === index ? { y: [0, -40, 0] } : { y: 0 }}>
+        animate={jumpingIndex === index ? { y: [0, width < 768 ? -20 : -40, 0] } : { y: 0 }}>
         {paddingNumber(value, 2)}
       </motion.span>
     );
@@ -158,19 +164,19 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     <div className="w-full mx-auto">
       <div className="flex items-center justify-center w-full ">
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-4xl font-black uppercase">dias</h2>
+          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">dias</h2>
           {renderDigits(timeRemaining.days, 1)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-4xl font-black uppercase">horas</h2>
+          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">horas</h2>
           {renderDigits(timeRemaining.hours, 2)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-4xl font-black uppercase">minutos</h2>
+          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">minutos</h2>
           {renderDigits(timeRemaining.minutes, 3)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-4xl font-black uppercase">segundos</h2>
+          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">segundos</h2>
           {renderDigits(timeRemaining.seconds, 4)}
         </div>
       </div>
