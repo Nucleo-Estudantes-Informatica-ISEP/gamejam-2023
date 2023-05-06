@@ -6,7 +6,7 @@ import dinoImage from '../../public/dino.gif';
 import paddingNumber from '../utils/paddingNumber';
 
 import '../styles/Countdown.css';
-import addAnimationKeyframes from '../utils/addAnimationKeyframes';
+import extendAnimationKeyframes from '../utils/extendAnimationKeyframes';
 
 interface Props {
   targetDate: Date;
@@ -14,15 +14,36 @@ interface Props {
 
 const Counter: React.FC<Props> = ({ targetDate }) => {
   const NUMBER_POSITIONS = [30, 280, 530, 780];
+  const JUMPING_NUMBERS_ORDER = [-1, 2, -1, 4, 4, 4, 3, 2, 1];
 
   const x = [
-    0,
+    NUMBER_POSITIONS[0],
     150,
     200,
-    NUMBER_POSITIONS[0] - 20,
+    NUMBER_POSITIONS[1] - 20,
+    NUMBER_POSITIONS[1],
+    NUMBER_POSITIONS[1],
+    NUMBER_POSITIONS[1] + 10,
+    200,
+    NUMBER_POSITIONS[3] - 40,
+    NUMBER_POSITIONS[3],
+    NUMBER_POSITIONS[3],
+    700,
+    500,
+    300,
+    NUMBER_POSITIONS[3],
+    NUMBER_POSITIONS[3],
+    NUMBER_POSITIONS[3] - 40,
+    200,
+    300,
     NUMBER_POSITIONS[0],
     NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0] + 10,
+    150,
+    200,
+    NUMBER_POSITIONS[3] - 20,
+    NUMBER_POSITIONS[3],
+    NUMBER_POSITIONS[3],
+    NUMBER_POSITIONS[3] + 10,
     200,
     NUMBER_POSITIONS[2] - 40,
     NUMBER_POSITIONS[2],
@@ -30,12 +51,12 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     700,
     500,
     300,
+    NUMBER_POSITIONS[3],
+    NUMBER_POSITIONS[3],
     NUMBER_POSITIONS[3] - 40,
-    NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[3],
     200,
     300,
-    0
+    NUMBER_POSITIONS[0]
   ];
 
   const rotateY: number[] = x.map((val, i) => {
@@ -50,28 +71,27 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
   const dinosaurAnimation = {
     x,
     y: [0, -40, 0],
-    rotateY: addAnimationKeyframes(rotateY, 2)
+    rotateY: extendAnimationKeyframes(rotateY, 2)
   };
 
   const dinosaurTransition = {
     y: {
       delay: 2.5,
-      repeatDelay: 5,
-      duration: 0.4,
+      repeatDelay: 4.8,
+      duration: 0.2,
       ease: 'linear',
-      repeat: Infinity
+      repeat: Infinity,
+      repeatType: 'reverse'
     },
     x: {
-      duration: 10,
+      duration: 20,
       repeat: Infinity,
-      ease: 'linear',
-      repeatType: 'reverse'
+      ease: 'linear'
     },
     rotateY: {
       ease: 'linear',
-      duration: 10, // hack to make repeat delay work
-      repeat: Infinity,
-      repeatType: 'reverse'
+      duration: 10,
+      repeat: Infinity
     }
   };
 
@@ -101,20 +121,25 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
   }, [targetDate]);
 
   const [jumpingIndex, setJumpingIndex] = useState(0);
+  const [currentJumpingIndex, setCurrentJumpingIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setJumpingIndex((prev) => (prev + 1) % (4 + 1));
-    }, 1000);
+      setCurrentJumpingIndex((prev) => (prev + 1) % (JUMPING_NUMBERS_ORDER.length + 1));
+    }, 2500);
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    setJumpingIndex(JUMPING_NUMBERS_ORDER[currentJumpingIndex]);
+  }, [currentJumpingIndex]);
 
   const renderDigits = (value: number, index: number) => {
     const transition = {
       type: 'spring',
       y: {
-        duration: 0.4,
+        duration: 0.2,
         ease: 'linear'
       }
     };
@@ -132,7 +157,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   return (
     <div className="w-full mx-auto">
-      <div className="flex items-center justify-center w-full border">
+      <div className="flex items-center justify-center w-full ">
         <div className="flex flex-col items-center justify-center w-full">
           <h2 className="text-4xl font-black uppercase">dias</h2>
           {renderDigits(timeRemaining.days, 1)}
