@@ -15,14 +15,11 @@ interface Props {
 const Counter: React.FC<Props> = ({ targetDate }) => {
   const NUMBER_POSITIONS = [30, 280, 530, 780];
   const JUMPING_NUMBERS_ORDER = [2, 4, 3, 1, 2, 4, 3, 1];
-  const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val) => [-1, val]);
+  const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val, i) =>
+    i === JUMPING_NUMBERS_ORDER.length - 1 ? [val] : [val, -1]
+  );
 
   const x = [
-    NUMBER_POSITIONS[0],
-    150,
-    200,
-    NUMBER_POSITIONS[1] - 20,
-    NUMBER_POSITIONS[1],
     NUMBER_POSITIONS[1],
     NUMBER_POSITIONS[1] + 10,
     200,
@@ -57,7 +54,12 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     NUMBER_POSITIONS[0] - 40,
     200,
     300,
-    NUMBER_POSITIONS[0]
+    NUMBER_POSITIONS[0],
+    NUMBER_POSITIONS[0],
+    150,
+    200,
+    NUMBER_POSITIONS[1] + 20,
+    NUMBER_POSITIONS[1]
   ];
 
   const rotateY: number[] = x.map((val, i) => {
@@ -75,12 +77,10 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   const dinosaurTransition = {
     y: {
-      delay: 2.5,
       repeatDelay: 4.8,
       duration: 0.2,
       ease: 'linear',
-      repeat: Infinity,
-      repeatType: 'reverse'
+      repeat: Infinity
     },
     x: {
       duration: 20,
