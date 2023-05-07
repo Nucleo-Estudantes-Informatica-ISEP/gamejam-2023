@@ -4,11 +4,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif']
+        poppins: ['Poppins', 'sans-serif'],
+        good__times: ['Good Times', 'Arial', 'sans-serif']
       }
     },
     colors: {
-      'tv-background': '#101011',
+      'tv-background': '#101011'
     }
   },
   plugins: []
