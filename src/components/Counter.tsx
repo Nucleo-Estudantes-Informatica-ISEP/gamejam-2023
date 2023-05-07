@@ -149,7 +149,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
     return (
       <motion.span
-        className="tracking-tight text-2xl md:text-4xl lg:text-8xl my-4 font-bold"
+        className="tracking-tight text-center text-2xl md:text-4xl lg:text-8xl my-4 font-bold"
         key={index}
         transition={transition}
         animate={jumpingIndex === index ? { y: [0, width < 768 ? -20 : -40, 0] } : { y: 0 }}>
@@ -162,19 +162,25 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     <div className="w-full mx-auto">
       <div className="flex items-center justify-center w-full ">
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">dias</h2>
+          <h2 className="text-md md:text-2xl text-center lg:text-4xl font-black uppercase">dias</h2>
           {renderDigits(timeRemaining.days, 1)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">horas</h2>
+          <h2 className="text-md md:text-2xl text-center lg:text-4xl font-black uppercase">
+            horas
+          </h2>
           {renderDigits(timeRemaining.hours, 2)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">min</h2>
+          <h2 className="text-md md:text-2xl text-center lg:text-4xl font-black uppercase">
+            {width < 768 ? 'min' : 'minutos'}
+          </h2>
           {renderDigits(timeRemaining.minutes, 3)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-md md:text-2xl lg:text-4xl font-black uppercase">seg</h2>
+          <h2 className="text-md md:text-2xl text-center lg:text-4xl font-black uppercase">
+            {width < 768 ? 'seg' : 'segundos'}
+          </h2>
           {renderDigits(timeRemaining.seconds, 4)}
         </div>
       </div>
