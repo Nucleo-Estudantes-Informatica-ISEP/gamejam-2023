@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import paddingNumber from '../utils/paddingNumber';
 import dinoImage from '/dino.gif';
 
-import '../styles/Countdown.css';
 import extendAnimationKeyframes from '../utils/extendAnimationKeyframes';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
@@ -187,7 +186,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       <motion.div
         transition={dinosaurTransition}
         animate={dinosaurAnimation}
-        className="dinosaur-item">
+        className="w-16 md:w-24 lg:w-52">
         <img src={dinoImage} alt="dinosaur" />
       </motion.div>
     </div>
