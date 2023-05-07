@@ -13,16 +13,16 @@ interface Props {
   targetDate: Date;
 }
 
-const random = () => Math.floor(Math.random() * 1.3) + 1;
-
 const JUMPING_NUMBERS_ORDER = [2, 4, 3, 1, 2, 4, 3, 1];
 
 const Counter: React.FC<Props> = ({ targetDate }) => {
+  const { width } = useWindowDimensions();
+
   const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val, i) =>
     i === JUMPING_NUMBERS_ORDER.length - 1 ? [val] : [val, -1]
   );
-  const { width } = useWindowDimensions();
   const NUMBER_POSITIONS = [width * 0.02, width * 0.25, width * 0.4, width * 0.6];
+
   const x = [
     NUMBER_POSITIONS[1],
     NUMBER_POSITIONS[1] * 1.1,
@@ -105,10 +105,10 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     }
 
-    const days = Math.floor(totalSeconds / (3600 * 24));
-    const hours = Math.floor(days / 24);
-    const minutes = Math.floor(hours / 60);
-    const seconds = Math.floor(minutes % 60);
+    const days = Math.floor(totalSeconds / (60 * 60 * 24));
+    const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+    const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+    const seconds = Math.floor(totalSeconds % 60);
 
     return { days, hours, minutes, seconds };
   };
