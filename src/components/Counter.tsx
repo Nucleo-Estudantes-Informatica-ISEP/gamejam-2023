@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { motion } from 'framer-motion';
 
-import dinoImage from '/dino.gif';
 import paddingNumber from '../utils/paddingNumber';
+import dinoImage from '/dino.gif';
 
 import '../styles/Countdown.css';
 import extendAnimationKeyframes from '../utils/extendAnimationKeyframes';
@@ -65,8 +65,6 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     NUMBER_POSITIONS[1] * 1.3,
     NUMBER_POSITIONS[1]
   ];
-
-  console.log(x);
 
   const rotateY: number[] = x.map((val, i) => {
     if (i === 0) return 0;
