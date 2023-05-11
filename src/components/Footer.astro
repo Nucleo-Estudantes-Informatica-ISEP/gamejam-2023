@@ -6,12 +6,13 @@ const NEI_WEBSITE_URL = 'https://nei-isep.org';
 const LAST_EDITION_URL = 'https://gamejam2022.nei-isep.org/';
 ---
 
-<footer class="w-full flex items-center justify-center flex-col text-center bg-tv-background">
+<footer class="w-full flex items-center justify-center flex-col text-center bg-background">
   <div class="flex justify-center drop-shadow-lg hover:drop-shadow-xl lg:m-8">
     <div class="my-6 w-max transition-all duration-300 hover:scale-105">
       <a href={LAST_EDITION_URL} target="_blank" rel="noreferrer">
         <div
           class="rounded-3xl border-[5px] border-double border-white p-5 font-good__times text-2xl text-white drop-shadow-3xl transition-all duration-300 lg:text-[2.5rem]"
+          style={{ color: 'white' }}
         >
           Edição Anterior
         </div>
@@ -66,7 +67,10 @@ const LAST_EDITION_URL = 'https://gamejam2022.nei-isep.org/';
     </a>
   </div>
 
-  <h4 class="select-none py-6 text-center font-good__times text-white drop-shadow-3xl">
+  <h4
+    class="select-none py-6 text-center font-good__times text-white drop-shadow-3xl"
+    style={{ color: 'white' }}
+  >
     Copyright &copy; {currentYear} NEI-ISEP. All rights reserved.
   </h4>
 </footer>

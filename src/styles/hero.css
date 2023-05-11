@@ -6,7 +6,7 @@
 
 #hero {
   min-height: 100vh;
-  background-image: url('/tv.jpg');
+  background-image: url('/particles_background.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

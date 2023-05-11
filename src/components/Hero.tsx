@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
   const opacity = useTransform(scrollYProgress, input, opacityOutput);
 
   return (
-    <main className="bg-tv-background min-h-screen">
+    <main className="bg-background min-h-screen">
       <div id="hero">
         <motion.div
           style={{
@@ -21,16 +21,9 @@ const Hero: React.FC = () => {
             fontFamily: 'Autom',
             opacity
           }}>
-          <div>
-            <div className="row">
-              <span className="game">Game</span>
-            </div>
-            <div className="row">
-              <span className="jam">Jam</span>
-              <div className="numbers">
-                <span>22</span>
-                <span>23</span>
-              </div>
+          <div className="flex justify-center items-center w-full h-full">
+            <div className="w-1/2 h-1/2">
+              <img src="/logo_game_jam.png" alt="hero" />
             </div>
           </div>
         </motion.div>
