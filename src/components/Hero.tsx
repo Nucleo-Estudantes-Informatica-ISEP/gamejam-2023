@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { filterProps, motion, useScroll, useTransform } from 'framer-motion';
 import HeroParticles from './HeroParticles';
 
 const Hero: React.FC = () => {
