@@ -6,8 +6,6 @@ import type { Engine } from 'tsparticles-engine';
 
 const HeroParticles: React.FC = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
-    console.log(engine);
-
     await loadFull(engine);
   }, []);
 
