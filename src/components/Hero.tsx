@@ -1,8 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import HeroParticles from './HeroParticles';
 
-import '../styles/hero.css';
-
 const Hero: React.FC = () => {
   const { scrollYProgress } = useScroll();
 
@@ -13,19 +11,12 @@ const Hero: React.FC = () => {
 
   return (
     <main className="bg-background min-h-screen">
-      <div id="hero">
-        <HeroParticles />
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <HeroParticles className="fixed h-screen w-screen" />
         <motion.div
-          className="fixed font-retro"
-          style={{
-            perspective: '1000px',
-            opacity
-          }}>
-          <div className="flex justify-center items-center w-full h-full">
-            <div className="w-1/2 h-1/2">
-              <img src="/logo_game_jam.webp" alt="hero" />
-            </div>
-          </div>
+          className="w-full flex items-center justify-center h-full fixed font-retro"
+          style={{ opacity }}>
+          <img className="w-5/6 h-full max-w-5xl" src="/logo_game_jam.webp" alt="hero" />
         </motion.div>
       </div>
     </main>

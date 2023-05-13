@@ -4,13 +4,18 @@ import Particles from 'react-particles';
 import { loadFull } from 'tsparticles';
 import type { Engine } from 'tsparticles-engine';
 
-const HeroParticles: React.FC = () => {
+interface HeroParticlesProps {
+  className?: string;
+}
+
+const HeroParticles: React.FC<HeroParticlesProps> = ({ className }) => {
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
   }, []);
 
   return (
     <Particles
+      className={className}
       id="tsparticles"
       options={{
         autoPlay: true,
