@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import HeroParticles from './HeroParticles';
 
 import '../styles/hero.css';
+import { HeroParticles } from './HeroParticles';
 
 const Hero: React.FC = () => {
   const { scrollYProgress } = useScroll();
