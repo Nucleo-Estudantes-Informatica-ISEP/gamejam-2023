@@ -3,12 +3,11 @@ import Layout from '../layouts/Layout.astro';
 
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero';
-import Main from '../components/Main.astro';
 import MoreInfo from '../components/MoreInfo.astro';
 ---
 
 <Layout title="Gamejam 2023">
-  <Hero client:load />
+  <Hero client:only />
   <MoreInfo />
   <Footer />
 </Layout>
