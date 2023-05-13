@@ -6,16 +6,11 @@
 
 #hero {
   min-height: 100vh;
-  background-image: url('/particles_background.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
 }
 
 #hero > div {
@@ -118,7 +113,6 @@
   /* color: transparent; */
   animation: pulse-glow 2s infinite ease-in-out;
   text-shadow: var(--shadow);
-  
 }
 
 @media (min-width: 500px) {
@@ -142,7 +136,6 @@
     font-size: 3.5em;
     line-height: 0.8em;
   }
-
 }
 
 @media (min-width: 768px) {
@@ -189,5 +182,5 @@
   .numbers span {
     font-size: 4.5em;
     line-height: 0.8em;
-  }  
   }
+}

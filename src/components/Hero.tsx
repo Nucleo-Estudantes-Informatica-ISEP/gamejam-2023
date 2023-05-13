@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
+import HeroParticles from './HeroParticles';
 
 import '../styles/hero.css';
 
@@ -13,12 +14,11 @@ const Hero: React.FC = () => {
   return (
     <main className="bg-background min-h-screen">
       <div id="hero">
+        <HeroParticles />
         <motion.div
+          className="fixed font-retro"
           style={{
             perspective: '1000px',
-            transform: 'perspective(1000px)',
-            position: 'fixed',
-            fontFamily: 'Autom',
             opacity
           }}>
           <div className="flex justify-center items-center w-full h-full">
