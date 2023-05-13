@@ -4,7 +4,7 @@ import Particles from 'react-particles';
 import { loadFull } from 'tsparticles';
 import type { Engine } from 'tsparticles-engine';
 
-export const HeroParticles: React.FC = () => {
+const HeroParticles: React.FC = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
   }, []);
@@ -558,3 +558,5 @@ export const HeroParticles: React.FC = () => {
     />
   );
 };
+
+export default HeroParticles;
