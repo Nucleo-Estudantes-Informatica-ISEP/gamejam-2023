@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
           }}>
           <div className="flex justify-center items-center w-full h-full">
             <div className="w-1/2 h-1/2">
-              <img src="/logo_game_jam.png" alt="hero" />
+              <img src="/logo_game_jam.webp" alt="hero" />
             </div>
           </div>
         </motion.div>
