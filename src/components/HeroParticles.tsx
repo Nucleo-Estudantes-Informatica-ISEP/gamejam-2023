@@ -66,7 +66,7 @@ const HeroParticles: React.FC<HeroParticlesProps> = ({ className }) => {
               mode: 'repulse',
               parallax: {
                 enable: true,
-                force: 10,
+                force: 40,
                 smooth: 20
               }
             },

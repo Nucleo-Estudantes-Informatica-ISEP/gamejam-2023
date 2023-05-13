@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { motion } from 'framer-motion';
 
@@ -22,61 +22,71 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
   );
   const NUMBER_POSITIONS = [width * 0.02, width * 0.25, width * 0.4, width * 0.6];
 
-  const x = [
-    NUMBER_POSITIONS[1],
-    NUMBER_POSITIONS[1] * 1.1,
-    NUMBER_POSITIONS[1] * 1.2,
-    NUMBER_POSITIONS[2] * 1.3,
-    NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[1] * 1.2,
-    NUMBER_POSITIONS[1] * 1.2,
-    NUMBER_POSITIONS[1] * 1.3,
-    NUMBER_POSITIONS[2] * 1.4,
-    NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[3],
-    NUMBER_POSITIONS[2] * 1.7,
-    NUMBER_POSITIONS[1] * 1.6,
-    NUMBER_POSITIONS[1] * 1.2,
-    NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0] * 1.3,
-    NUMBER_POSITIONS[0] * 1.1,
-    NUMBER_POSITIONS[1] * 1.4,
-    NUMBER_POSITIONS[2],
-    NUMBER_POSITIONS[2],
-    NUMBER_POSITIONS[2] * 1.2,
-    NUMBER_POSITIONS[2] * 1.7,
-    NUMBER_POSITIONS[0] * 1.9,
-    NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0] * 1.4,
-    NUMBER_POSITIONS[1] * 1.5,
-    NUMBER_POSITIONS[2] * 1.2,
-    NUMBER_POSITIONS[2] * 1.2,
-    NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0] * 1.8,
-    NUMBER_POSITIONS[1] * 1.1,
-    NUMBER_POSITIONS[1] * 1.6,
-    NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0],
-    NUMBER_POSITIONS[0] * 1.7,
-    NUMBER_POSITIONS[0] * 1.2,
-    NUMBER_POSITIONS[1] * 1.3,
-    NUMBER_POSITIONS[1]
-  ];
+  const x = useMemo(
+    () => [
+      NUMBER_POSITIONS[1],
+      NUMBER_POSITIONS[1] * 1.1,
+      NUMBER_POSITIONS[1] * 1.4,
+      NUMBER_POSITIONS[2] * 1.1,
+      NUMBER_POSITIONS[2],
+      NUMBER_POSITIONS[1] * 1.4,
+      NUMBER_POSITIONS[2] * 1.1,
+      NUMBER_POSITIONS[2] * 1.3,
+      NUMBER_POSITIONS[3] * 0.95,
+      NUMBER_POSITIONS[3],
+      NUMBER_POSITIONS[3],
+      NUMBER_POSITIONS[2] * 1.1,
+      NUMBER_POSITIONS[1] * 1.3,
+      NUMBER_POSITIONS[0] * 1.3,
+      NUMBER_POSITIONS[0],
+      NUMBER_POSITIONS[0],
+      NUMBER_POSITIONS[0] * 1.3,
+      NUMBER_POSITIONS[1] * 1.1,
+      NUMBER_POSITIONS[1] * 1.3,
+      NUMBER_POSITIONS[2],
+      NUMBER_POSITIONS[2],
+      NUMBER_POSITIONS[1] * 1.1,
+      NUMBER_POSITIONS[1] * 1.4,
+      NUMBER_POSITIONS[1] * 1.3,
+      NUMBER_POSITIONS[1],
+      NUMBER_POSITIONS[0] * 1.4,
+      NUMBER_POSITIONS[1] * 1.2,
+      NUMBER_POSITIONS[1] * 1.1,
+      NUMBER_POSITIONS[0] * 1.3,
+      NUMBER_POSITIONS[0],
+      NUMBER_POSITIONS[0],
+      NUMBER_POSITIONS[0] * 1.4,
+      NUMBER_POSITIONS[0] * 1.6,
+      NUMBER_POSITIONS[0] * 1.3,
+      NUMBER_POSITIONS[0],
+      NUMBER_POSITIONS[0],
+      NUMBER_POSITIONS[0] * 1.5,
+      NUMBER_POSITIONS[0] * 1.2,
+      NUMBER_POSITIONS[1] * 1.3,
+      NUMBER_POSITIONS[1]
+    ],
+    []
+  );
 
-  const rotateY: number[] = x.map((val, i) => {
-    if (i === 0) return 0;
-    if (i === x.length - 1) return 0;
+  const rotateY: number[] = useMemo(
+    () =>
+      x.map((val, i) => {
+        if (i === 0) return 0;
+        if (i === x.length - 1) return 0;
 
-    return val < x[i - 1] ? 180 : 0;
-  });
+        return val < x[i - 1] ? 180 : 0;
+      }),
+    [x]
+  );
 
-  const dinosaurAnimation = {
-    x,
-    y: [0, -40, 0],
-    rotateY: extendAnimationKeyframes(rotateY, 4)
-  };
+  const dinosaurAnimation = useMemo(
+    () => ({
+      x,
+      y: [0, -40, 0],
+      rotateY: extendAnimationKeyframes(rotateY, 4)
+    }),
+    [x, rotateY]
+  );
 
   const dinosaurTransition = {
     y: {
