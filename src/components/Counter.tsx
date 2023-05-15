@@ -156,7 +156,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
     return (
       <motion.span
-        className="tracking-tight text-center text-3xl md:text-4xl lg:text-8xl my-4 font-bold text-white font-retro"
+        className="tracking-tight text-center text-4xl md:text-5xl lg:text-8xl my-4 font-bold text-white font-retro"
         key={index}
         transition={transition}
         animate={jumpingIndex === index ? { y: [0, width < 768 ? -20 : -40, 0] } : { y: 0 }}>
