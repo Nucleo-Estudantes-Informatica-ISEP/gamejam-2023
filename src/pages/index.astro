@@ -4,10 +4,13 @@ import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero';
 import MoreInfo from '../components/MoreInfo.astro';
+import Container from '../layouts/Container.astro';
 ---
 
 <Layout title="Gamejam 2023">
   <Hero client:only />
-  <MoreInfo />
-  <Footer />
+  <Container>
+    <MoreInfo />
+    <Footer />
+  </Container>
 </Layout>
