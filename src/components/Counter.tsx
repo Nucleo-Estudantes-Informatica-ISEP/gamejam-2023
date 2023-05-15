@@ -21,6 +21,12 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
   const dinosaurInView = useInView(dinoRef);
   const scrollPos = useScroll();
 
+  const dinoPosition = useMemo(() => {
+    if (width < 768) return -20;
+    if (width < 1024) return -30;
+    return -65;
+  }, [width]);
+
   console.log(scrollPos.scrollYProgress.get());
 
   const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val, i) =>
@@ -212,13 +218,13 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       </motion.div>
       <motion.div
         animate={{
-          top: !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4 ? -65 : -200,
-          right: !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4 ? -65 : -200,
+          top: !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4 ? dinoPosition : -200,
+          right: !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4 ? dinoPosition : -200,
           rotate: dinosaurInView ? '0' : '-135deg'
         }}
         whileHover={{
-          translateX: 150,
-          translateY: -150,
+          translateX: -dinoPosition / 2,
+          translateY: dinoPosition / 2,
           transition: { duration: 0.2 }
         }}
         className="w-16 md:w-24 lg:w-52 select-none"
