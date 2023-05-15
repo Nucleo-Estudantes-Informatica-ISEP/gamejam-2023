@@ -315,7 +315,7 @@ const HeroParticles: React.FC<HeroParticlesProps> = ({ className }) => {
               width: 1920,
               height: 1080
             },
-            limit: 0,
+            limit: 250,
             value: 80
           },
           opacity: {

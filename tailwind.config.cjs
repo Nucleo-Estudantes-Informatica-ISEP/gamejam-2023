@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
         retro: ['Autom', 'sans-serif'],
+        'retro-numbers': ['Eight Bit Dragon', 'sans-serif'],
         good__times: ['Good Times', 'Arial', 'sans-serif']
       }
     },

@@ -156,7 +156,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
     return (
       <motion.span
-        className="tracking-tight text-center text-4xl md:text-5xl lg:text-8xl my-4 font-bold text-white font-retro"
+        className="tracking-tight text-center text-4xl md:text-5xl lg:text-8xl my-4 font-bold text-white font-retro-numbers"
         key={index}
         transition={transition}
         animate={jumpingIndex === index ? { y: [0, width < 768 ? -20 : -40, 0] } : { y: 0 }}>
@@ -167,7 +167,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   return (
     <div className="w-full mx-auto">
-      <div className="flex items-center justify-center w-full ">
+      <div className="flex items-center justify-center w-full select-none">
         <div className="flex flex-col items-center justify-center w-full">
           <h2 className="text-lg md:text-2xl text-center lg:text-4xl uppercase font-retro text-white">
             dias
@@ -196,7 +196,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       <motion.div
         transition={dinosaurTransition}
         animate={dinosaurAnimation}
-        className="w-16 md:w-24 lg:w-52">
+        className="w-16 md:w-24 lg:w-52 select-none">
         <img src={dinoImage} alt="dinosaur" />
       </motion.div>
     </div>
