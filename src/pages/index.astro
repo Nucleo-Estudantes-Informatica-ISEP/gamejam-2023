@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero';
 import MoreInfo from '../components/MoreInfo.astro';
+import Schedule from '../components/Schedule.astro';
 import Container from '../layouts/Container.astro';
 ---
 
@@ -11,6 +12,7 @@ import Container from '../layouts/Container.astro';
   <Hero client:only />
   <Container>
     <MoreInfo />
-    <Footer />
+    <Schedule />
   </Container>
+  <Footer />
 </Layout>

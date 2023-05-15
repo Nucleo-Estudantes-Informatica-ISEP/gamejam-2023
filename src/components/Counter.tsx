@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { motion } from 'framer-motion';
+import { motion, useInView, useScroll } from 'framer-motion';
 
 import paddingNumber from '../utils/paddingNumber';
 import dinoImage from '/dino.gif';
@@ -16,6 +16,12 @@ const JUMPING_NUMBERS_ORDER = [2, 4, 3, 1, 2, 4, 3, 1];
 
 const Counter: React.FC<Props> = ({ targetDate }) => {
   const { width } = useWindowDimensions();
+  const dinoRef = useRef<HTMLDivElement>(null);
+
+  const dinosaurInView = useInView(dinoRef);
+  const scrollPos = useScroll();
+
+  console.log(scrollPos.scrollYProgress.get());
 
   const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val, i) =>
     i === JUMPING_NUMBERS_ORDER.length - 1 ? [val] : [val, -1]
@@ -85,7 +91,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       y: [0, -40, 0],
       rotateY: extendAnimationKeyframes(rotateY, 4)
     }),
-    [x, rotateY]
+    [x, rotateY, width, dinosaurInView]
   );
 
   const dinosaurTransition = {
@@ -139,11 +145,15 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     }, 2500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [width]);
 
   useEffect(() => {
     setJumpingIndex(jumpingNumbersAnimation[currentJumpingIndex]);
   }, [currentJumpingIndex]);
+
+  useEffect(() => {
+    setCurrentJumpingIndex(0);
+  }, [width]);
 
   const renderDigits = (value: number, index: number) => {
     const transition = {
@@ -194,9 +204,25 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
         </div>
       </div>
       <motion.div
+        ref={dinoRef}
         transition={dinosaurTransition}
         animate={dinosaurAnimation}
         className="w-16 md:w-24 lg:w-52 select-none">
+        <img src={dinoImage} alt="dinosaur" />
+      </motion.div>
+      <motion.div
+        animate={{
+          top: !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4 ? -65 : -200,
+          right: !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4 ? -65 : -200,
+          rotate: dinosaurInView ? '0' : '-135deg'
+        }}
+        whileHover={{
+          translateX: 150,
+          translateY: -150,
+          transition: { duration: 0.2 }
+        }}
+        className="w-16 md:w-24 lg:w-52 select-none"
+        style={{ position: 'fixed' }}>
         <img src={dinoImage} alt="dinosaur" />
       </motion.div>
     </div>
