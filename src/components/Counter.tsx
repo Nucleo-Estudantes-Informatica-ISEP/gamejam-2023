@@ -22,7 +22,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
   const scrollPos = useScroll();
 
   const dinoPosition = useMemo(() => {
-    if (width < 768) return -20;
+    if (width < 768) return -25;
     if (width < 1024) return -30;
     return -65;
   }, [width]);
@@ -213,7 +213,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
         ref={dinoRef}
         transition={dinosaurTransition}
         animate={dinosaurAnimation}
-        className="w-16 md:w-24 lg:w-52 select-none">
+        className="w-24 lg:w-52 select-none z-20">
         <img src={dinoImage} alt="dinosaur" />
       </motion.div>
       <motion.div
