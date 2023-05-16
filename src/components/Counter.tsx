@@ -80,13 +80,13 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     []
   );
 
-  const rotateY: number[] = useMemo(
+  const scaleX: number[] = useMemo(
     () =>
       x.map((val, i) => {
-        if (i === 0) return 0;
-        if (i === x.length - 1) return 0;
+        if (i === 0) return 1;
+        if (i === x.length - 1) return 1;
 
-        return val < x[i - 1] ? 180 : 0;
+        return val < x[i - 1] ? -1 : 1;
       }),
     [x]
   );
@@ -95,10 +95,9 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     () => ({
       x,
       y: [0, -40, 0],
-      rotateY: extendAnimationKeyframes(rotateY, 8),
-      WebkitTransform: extendAnimationKeyframes(rotateY, 8)
+      scaleX: extendAnimationKeyframes(scaleX, 4)
     }),
-    [x, rotateY, width, dinosaurInView]
+    [x, scaleX, width, dinosaurInView]
   );
 
   const dinosaurTransition = {
@@ -113,12 +112,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       repeat: Infinity,
       ease: 'linear'
     },
-    rotateY: {
-      ease: 'linear',
-      duration: 20,
-      repeat: Infinity
-    },
-    '-webkit-transform': {
+    scaleX: {
       ease: 'linear',
       duration: 20,
       repeat: Infinity
