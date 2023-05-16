@@ -33,7 +33,7 @@ const ScheduleContent: React.FC<ScheduleContentProps> = () => {
                     ${activeDayButtonStyles(id)}
                     w-full px-4 py-2.5 transition-all text-md md:text-lg lg:text-lg duration-300 hover:brightness-75`}
                 onClick={() => setActiveDay(id)}>
-                {name}
+                {`${name} (${date})`}
               </button>
             );
           })}
@@ -48,11 +48,11 @@ const ScheduleContent: React.FC<ScheduleContentProps> = () => {
 
           <tbody>
             {getActiveDayEvents().map((event, index) => {
-              const { startTime, endTime, description } = event;
+              const { startTime, description } = event;
 
               return (
                 <tr className="border-b-2 border-gray-500" key={index}>
-                  <td className="py-4 px-4">{`${startTime} - ${endTime}`}</td>
+                  <td className="py-4 px-4">{startTime}</td>
                   <td className="py-4 pr-4">{description}</td>
                 </tr>
               );

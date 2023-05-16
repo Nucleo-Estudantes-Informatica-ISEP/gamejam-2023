@@ -1,6 +1,5 @@
 type GamejamEvent = {
   startTime: string;
-  endTime: string;
   description: string;
 };
 
@@ -18,19 +17,20 @@ export const schedule: Day[] = [
     date: '02/06',
     events: [
       {
-        startTime: '18:30',
-        endTime: '19:00',
+        startTime: '18:00',
         description: 'Abertura de portas e check-in'
       },
       {
-        startTime: '19:00',
-        endTime: '19:30',
-        description: 'Revelação do tema (+ info sobre submissões)'
+        startTime: '18:30',
+        description: 'Revelação do tema'
       },
       {
-        startTime: '19:30',
-        endTime: '20:30',
-        description: 'Jantar'
+        startTime: '19:00',
+        description: 'Jantar / Convívio'
+      },
+      {
+        startTime: '20:00',
+        description: 'Início do Desenvolvimento '
       }
     ]
   },
@@ -41,12 +41,10 @@ export const schedule: Day[] = [
     events: [
       {
         startTime: '13:00',
-        endTime: '14:00',
         description: 'Almoço'
       },
       {
         startTime: '20:00',
-        endTime: '21:00',
         description: 'Jantar'
       }
     ]
@@ -58,28 +56,19 @@ export const schedule: Day[] = [
     events: [
       {
         startTime: '13:00',
-        endTime: '14:00',
         description: 'Almoço'
       },
       {
-        startTime: '14:00',
-        endTime: '17:30',
-        description: 'Conclusão do desenvolvimento'
-      },
-      {
-        startTime: '17:30',
-        endTime: '17:30',
+        startTime: '18:00',
         description: 'Submissão'
       },
       {
-        startTime: '18:00',
-        endTime: '19:00',
+        startTime: '18:30',
         description: 'Apresentação aos júris'
       },
       {
-        startTime: '19:30',
-        endTime: '20:00',
-        description: 'Entrega de prémios e sessão encerramento'
+        startTime: '20:00',
+        description: 'Entrega de prémios e sessão de encerramento'
       }
     ]
   }
