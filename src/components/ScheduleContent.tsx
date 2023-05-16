@@ -38,7 +38,7 @@ const ScheduleContent: React.FC<ScheduleContentProps> = () => {
             );
           })}
         </div>
-        <table className="text-md w-98 mt-6 w-full table-auto border-collapse">
+        <table className="text-md w-98 mt-6 w-full table-auto border-collapse min-h-[28rem]">
           <thead>
             <tr className="border-b-2 border-gray-500">
               <th className="w-1/3 py-4 px-4 text-left">Hora</th>
