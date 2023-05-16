@@ -96,7 +96,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       x,
       y: [0, -40, 0],
       rotateY: extendAnimationKeyframes(rotateY, 8),
-      '-webkit-transform': extendAnimationKeyframes(rotateY, 8)
+      WebkitTransform: extendAnimationKeyframes(rotateY, 8)
     }),
     [x, rotateY, width, dinosaurInView]
   );
