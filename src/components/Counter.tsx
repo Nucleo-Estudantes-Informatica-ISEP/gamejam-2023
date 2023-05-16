@@ -24,7 +24,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   const dinoPosition = useMemo(() => {
     if (width < 768) return -30;
-    if (width < 1024) return -50;
+    if (width < 1024) return -60;
     return -70;
   }, [width]);
 

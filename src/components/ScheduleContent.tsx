@@ -22,7 +22,7 @@ const ScheduleContent: React.FC<ScheduleContentProps> = () => {
   return (
     <>
       <div className="container flex w-full flex-col items-center justify-center">
-        <div className="flex w-full flex-col justify-center  lg:flex-row">
+        <div className="flex w-full flex-col justify-center lg:flex-row">
           {SCHEDULE.map((day) => {
             const { id, date, name } = day;
 
@@ -31,14 +31,14 @@ const ScheduleContent: React.FC<ScheduleContentProps> = () => {
                 key={id}
                 className={`
                     ${activeDayButtonStyles(id)}
-                    w-full  px-4 py-2.5 transition-all duration-300 hover:brightness-75`}
+                    w-full px-4 py-2.5 transition-all text-md md:text-lg lg:text-lg duration-300 hover:brightness-75`}
                 onClick={() => setActiveDay(id)}>
                 {name}
               </button>
             );
           })}
         </div>
-        <table className="text-md w-98 mt-6 w-full table-auto border-collapse min-h-[28rem]">
+        <table className="text-md w-98 mt-6 w-full text-md md:text-lg lg:text-xl table-auto border-collapse min-h-[28rem]">
           <thead>
             <tr className="border-b-2 border-gray-500">
               <th className="w-1/3 py-4 px-4 text-left">Hora</th>
