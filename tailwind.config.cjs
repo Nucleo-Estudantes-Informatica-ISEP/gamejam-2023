@@ -7,7 +7,8 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
         retro: ['Autom', 'sans-serif'],
         'retro-numbers': ['Eight Bit Dragon', 'sans-serif'],
-        good__times: ['Good Times', 'Arial', 'sans-serif']
+        good__times: ['Good Times', 'Arial', 'sans-serif'],
+        misterPixel: ['MisterPixel', 'sans-serif']
       },
       colors: {
         'background-light': '#132C36',

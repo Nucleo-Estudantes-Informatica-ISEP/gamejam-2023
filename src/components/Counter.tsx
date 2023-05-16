@@ -189,7 +189,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
     return (
       <motion.span
-        className="tracking-tight text-center text-4xl md:text-5xl lg:text-8xl my-4 font-bold text-white font-retro-numbers"
+        className="tracking-tight text-center text-4xl md:text-5xl lg:text-8xl my-4 font-bold text-white font-misterPixel"
         key={index}
         transition={transition}
         animate={jumpingIndex === index ? { y: [0, width < 768 ? -20 : -40, 0] } : { y: 0 }}>
@@ -200,27 +200,27 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   return (
     <div className="w-full mx-auto">
-      <div className="flex items-center justify-center w-full select-none">
+      <div className="flex items-center justify-center w-full select-none font-misterPixel">
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-lg md:text-2xl text-center lg:text-4xl uppercase font-retro text-white">
+          <h2 className="text-lg md:text-2xl text-center lg:text-4xl uppercase  text-white">
             dias
           </h2>
           {renderDigits(timeRemaining.days, 1)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase font-retro text-white">
+          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase  text-white">
             horas
           </h2>
           {renderDigits(timeRemaining.hours, 2)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase text-white font-retro">
+          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase text-white">
             {width < 768 ? 'min' : 'minutos'}
           </h2>
           {renderDigits(timeRemaining.minutes, 3)}
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase font-retro text-white">
+          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase  text-white">
             {width < 768 ? 'seg' : 'segundos'}
           </h2>
           {renderDigits(timeRemaining.seconds, 4)}

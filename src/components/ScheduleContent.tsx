@@ -31,7 +31,7 @@ const ScheduleContent: React.FC<ScheduleContentProps> = () => {
                 key={id}
                 className={`
                     ${activeDayButtonStyles(id)}
-                    w-full px-4 py-2.5 transition-all text-md md:text-lg lg:text-lg duration-300 hover:brightness-75`}
+                    w-full px-4 py-2.5 transition-all text-md md:text-lg lg:text-lg duration-300 hover:brightness-75 font-misterPixel uppercase`}
                 onClick={() => setActiveDay(id)}>
                 {`${name} (${date})`}
               </button>
