@@ -95,7 +95,8 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     () => ({
       x,
       y: [0, -40, 0],
-      rotateY: extendAnimationKeyframes(rotateY, 4)
+      rotateY: extendAnimationKeyframes(rotateY, 8),
+      '-webkit-transform': extendAnimationKeyframes(rotateY, 8)
     }),
     [x, rotateY, width, dinosaurInView]
   );
@@ -113,6 +114,11 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       ease: 'linear'
     },
     rotateY: {
+      ease: 'linear',
+      duration: 20,
+      repeat: Infinity
+    },
+    '-webkit-transform': {
       ease: 'linear',
       duration: 20,
       repeat: Infinity
@@ -218,6 +224,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       </motion.div>
       <motion.div
         animate={{
+          display: scrollPos.scrollYProgress.get() > 0.4 ? 'block' : 'none',
           top: !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4 ? dinoPosition : -200,
           right: !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4 ? dinoPosition : -200,
           rotate: dinosaurInView ? '0' : '-135deg'
@@ -227,7 +234,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
           translateY: dinoPosition / 2,
           transition: { duration: 0.2 }
         }}
-        className="w-16 md:w-24 lg:w-52 select-none"
+        className="w-24 lg:w-52 select-none"
         style={{ position: 'fixed' }}>
         <img src={dinoImage} alt="dinosaur" />
       </motion.div>
