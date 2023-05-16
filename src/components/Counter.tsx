@@ -15,24 +15,41 @@ interface Props {
 const JUMPING_NUMBERS_ORDER = [2, 4, 3, 1, 2, 4, 3, 1];
 
 const Counter: React.FC<Props> = ({ targetDate }) => {
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const dinoRef = useRef<HTMLDivElement>(null);
 
   const dinosaurInView = useInView(dinoRef);
   const scrollPos = useScroll();
+  const [hoverCounts, setHoverCounts] = useState(0);
 
   const dinoPosition = useMemo(() => {
-    if (width < 768) return -25;
-    if (width < 1024) return -30;
-    return -65;
+    if (width < 768) return -30;
+    if (width < 1024) return -50;
+    return -70;
   }, [width]);
 
-  console.log(scrollPos.scrollYProgress.get());
+  const stickyDinoPositions = useMemo(() => {
+    return [
+      { top: dinoPosition, right: width + dinoPosition * 2.3, rotate: 135 },
+      { top: dinoPosition, right: dinoPosition, rotate: -135 },
+      { top: height + dinoPosition * 1.9, right: width + dinoPosition * 2, rotate: 45 },
+      { top: height + dinoPosition * 1.9, right: dinoPosition, rotate: -45 }
+    ];
+  }, [dinoPosition]);
+
+  function incHover() {
+    const random = Math.floor(Math.random() * 4);
+    if (random === hoverCounts) {
+      incHover();
+      return;
+    }
+    setHoverCounts(random);
+  }
 
   const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val, i) =>
     i === JUMPING_NUMBERS_ORDER.length - 1 ? [val] : [val, -1]
   );
-  const NUMBER_POSITIONS = [width * 0.02, width * 0.25, width * 0.4, width * 0.6];
+  const NUMBER_POSITIONS = [width * 0.02, width * 0.25, width * 0.45, width * 0.68];
 
   const x = useMemo(
     () => [
@@ -95,7 +112,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     () => ({
       x,
       y: [0, -40, 0],
-      scaleX: extendAnimationKeyframes(scaleX, 4)
+      scaleX: extendAnimationKeyframes(scaleX, 8)
     }),
     [x, scaleX, width, dinosaurInView]
   );
@@ -219,14 +236,23 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       <motion.div
         animate={{
           display: scrollPos.scrollYProgress.get() > 0.4 ? 'block' : 'none',
-          top: !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4 ? dinoPosition : -200,
-          right: !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4 ? dinoPosition : -200,
-          rotate: dinosaurInView ? '0' : '-135deg'
+          top:
+            !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
+              ? stickyDinoPositions[hoverCounts].top
+              : -200,
+          right:
+            !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
+              ? stickyDinoPositions[hoverCounts].right
+              : -200,
+          rotate:
+            !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
+              ? stickyDinoPositions[hoverCounts].rotate
+              : 0
         }}
-        whileHover={{
-          translateX: -dinoPosition / 2,
-          translateY: dinoPosition / 2,
-          transition: { duration: 0.2 }
+        onHoverStart={incHover}
+        transition={{
+          duration: 0.4,
+          type: 'spring'
         }}
         className="w-24 lg:w-52 select-none"
         style={{ position: 'fixed' }}>
