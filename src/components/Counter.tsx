@@ -26,7 +26,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     if (width < 768) return -30;
     if (width < 1024) return -60;
     return -70;
-  }, [width]);
+  }, [width, height]);
 
   const stickyDinoPositions = useMemo(() => {
     return [
@@ -35,7 +35,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
       { top: height + dinoPosition * 1.9, right: width + dinoPosition * 2, rotate: 45 },
       { top: height + dinoPosition * 1.9, right: dinoPosition, rotate: -45 }
     ];
-  }, [dinoPosition]);
+  }, [dinoPosition, height, width]);
 
   function incHover() {
     const random = Math.floor(Math.random() * 4);
