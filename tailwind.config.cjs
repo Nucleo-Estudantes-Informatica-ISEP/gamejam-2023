@@ -11,12 +11,17 @@ module.exports = {
       },
       colors: {
         'background-light': '#132C36',
-        background: '#0d1e25'
+        background: '#0d1e25',
+        primary: '#7c3aed',
+        secondary: '#3b82f6'
       },
       animation: {
         'bounce-slow': 'bounce 1.5s ease-in-out infinite',
         'bounce-delayed-1': 'bounce 1.5s ease-in-out infinite 50ms',
         'bounce-delayed-2': 'bounce 1.5s ease-in-out infinite 100ms'
+      },
+      boxShadow: {
+        'intense-white': '0px 0px 15px #7c3aed'
       }
     }
   },
