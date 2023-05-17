@@ -31,16 +31,16 @@ const ScheduleContent: React.FC<ScheduleContentProps> = () => {
                 key={id}
                 className={`
                     ${activeDayButtonStyles(id)}
-                    w-full px-4 py-2.5 transition-all text-md md:text-lg lg:text-lg duration-300 hover:brightness-75 font-misterPixel uppercase`}
+                    w-full px-4 py-3 transition-all border-2 border-slate-400 text-md md:text-lg lg:text-xl duration-300 hover:brightness-75 font-misterPixel uppercase`}
                 onClick={() => setActiveDay(id)}>
                 {`${name} (${date})`}
               </button>
             );
           })}
         </div>
-        <table className="text-md w-98 mt-6 w-full text-md md:text-lg lg:text-xl table-auto border-collapse min-h-[28rem]">
+        <table className="text-md w-98 mt-6 w-full text-md md:text-xl table-auto border-collapse min-h-[28rem]">
           <thead>
-            <tr className="border-b-2 border-gray-500">
+            <tr className="border-b-2 text-gray-500 border-gray-500">
               <th className="w-1/3 py-4 px-4 text-left">Hora</th>
               <th className="py-4 text-left">Atividade</th>
             </tr>
@@ -52,7 +52,7 @@ const ScheduleContent: React.FC<ScheduleContentProps> = () => {
 
               return (
                 <tr className="border-b-2 border-gray-500" key={index}>
-                  <td className="py-4 px-4">{startTime}</td>
+                  <td className="py-4 px-4 text-xl md:text-2xl">{startTime}</td>
                   <td className="py-4 pr-4">{description}</td>
                 </tr>
               );
