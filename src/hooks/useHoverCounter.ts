@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const messages = [
+  '',
   'Ahm...',
   'Ok..',
   'Ainda não',
