@@ -1,18 +1,20 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import { motion, useInView, useScroll } from 'framer-motion';
+import ReactCanvasConfetti from 'react-canvas-confetti';
 
 import paddingNumber from '../utils/paddingNumber';
 import dinoImage from '/dino.gif';
 
-import extendAnimationKeyframes from '../utils/extendAnimationKeyframes';
+import useDinoComingSoonAnimation from '../hooks/useDinoComingSoonAnimation';
+import useHoverCounter from '../hooks/useHoverCounter';
+import useStickyDino from '../hooks/useStickyDino';
+import useTimeRemaining from '../hooks/useTimeRemaining';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
 interface Props {
   targetDate: Date;
 }
-
-const JUMPING_NUMBERS_ORDER = [2, 4, 3, 1, 2, 4, 3, 1];
 
 const Counter: React.FC<Props> = ({ targetDate }) => {
   const { width, height } = useWindowDimensions();
@@ -20,159 +22,18 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   const dinosaurInView = useInView(dinoRef);
   const scrollPos = useScroll();
-  const [hoverCounts, setHoverCounts] = useState(0);
 
-  const dinoPosition = useMemo(() => {
-    if (width < 768) return -30;
-    if (width < 1024) return -50;
-    return -70;
-  }, [width, height]);
-
-  const stickyDinoPositions = useMemo(() => {
-    return [
-      { top: dinoPosition, right: width + dinoPosition * 2.3, rotate: 135 },
-      { top: dinoPosition, right: dinoPosition, rotate: -135 },
-      { top: height + dinoPosition * 1.9, right: width + dinoPosition * 2, rotate: 45 },
-      { top: height + dinoPosition * 1.9, right: dinoPosition, rotate: -45 }
-    ];
-  }, [dinoPosition, height, width]);
-
-  function incHover() {
-    const randomBetween1And3 = Math.floor(Math.random() * 2 + 1);
-    setHoverCounts((c) => (c + randomBetween1And3) % 4);
-  }
-
-  const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val, i) =>
-    i === JUMPING_NUMBERS_ORDER.length - 1 ? [val] : [val, -1]
-  );
-  const NUMBER_POSITIONS = [width * 0.02, width * 0.25, width * 0.45, width * 0.68];
-
-  const x = useMemo(
-    () => [
-      NUMBER_POSITIONS[1],
-      NUMBER_POSITIONS[1] * 1.1,
-      NUMBER_POSITIONS[1] * 1.4,
-      NUMBER_POSITIONS[2] * 1.1,
-      NUMBER_POSITIONS[2],
-      NUMBER_POSITIONS[1] * 1.4,
-      NUMBER_POSITIONS[2] * 1.1,
-      NUMBER_POSITIONS[2] * 1.3,
-      NUMBER_POSITIONS[3] * 0.95,
-      NUMBER_POSITIONS[3],
-      NUMBER_POSITIONS[3],
-      NUMBER_POSITIONS[2] * 1.1,
-      NUMBER_POSITIONS[1] * 1.3,
-      NUMBER_POSITIONS[0] * 1.3,
-      NUMBER_POSITIONS[0],
-      NUMBER_POSITIONS[0],
-      NUMBER_POSITIONS[0] * 1.3,
-      NUMBER_POSITIONS[1] * 1.1,
-      NUMBER_POSITIONS[1] * 1.3,
-      NUMBER_POSITIONS[2],
-      NUMBER_POSITIONS[2],
-      NUMBER_POSITIONS[1] * 1.1,
-      NUMBER_POSITIONS[1] * 1.4,
-      NUMBER_POSITIONS[1] * 1.3,
-      NUMBER_POSITIONS[1],
-      NUMBER_POSITIONS[0] * 1.4,
-      NUMBER_POSITIONS[1] * 1.2,
-      NUMBER_POSITIONS[1] * 1.1,
-      NUMBER_POSITIONS[0] * 1.3,
-      NUMBER_POSITIONS[0],
-      NUMBER_POSITIONS[0],
-      NUMBER_POSITIONS[0] * 1.4,
-      NUMBER_POSITIONS[0] * 1.6,
-      NUMBER_POSITIONS[0] * 1.3,
-      NUMBER_POSITIONS[0],
-      NUMBER_POSITIONS[0],
-      NUMBER_POSITIONS[0] * 1.5,
-      NUMBER_POSITIONS[0] * 1.2,
-      NUMBER_POSITIONS[1] * 1.3,
-      NUMBER_POSITIONS[1]
-    ],
-    []
-  );
-
-  const scaleX: number[] = useMemo(
-    () =>
-      x.map((val, i) => {
-        if (i === 0) return 1;
-        if (i === x.length - 1) return 1;
-
-        return val < x[i - 1] ? -1 : 1;
-      }),
-    [x]
-  );
-
-  const dinosaurAnimation = useMemo(
-    () => ({
-      x,
-      y: [0, -40, 0],
-      scaleX: extendAnimationKeyframes(scaleX, 8)
-    }),
-    [x, scaleX, width, dinosaurInView]
-  );
-
-  const dinosaurTransition = {
-    y: {
-      repeatDelay: 4.8,
-      duration: 0.2,
-      ease: 'linear',
-      repeat: Infinity
-    },
-    x: {
-      duration: 20,
-      repeat: Infinity,
-      ease: 'linear'
-    },
-    scaleX: {
-      ease: 'linear',
-      duration: 20,
-      repeat: Infinity
-    }
-  };
-
-  const calculateTimeRemaining = () => {
-    const totalSeconds = Math.round((targetDate.getTime() - new Date().getTime()) / 1000);
-
-    if (totalSeconds < 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-
-    const days = Math.floor(totalSeconds / (60 * 60 * 24));
-    const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
-    const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
-    const seconds = Math.floor(totalSeconds % 60);
-
-    return { days, hours, minutes, seconds };
-  };
-
-  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [targetDate]);
-
-  const [jumpingIndex, setJumpingIndex] = useState(0);
-  const [currentJumpingIndex, setCurrentJumpingIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentJumpingIndex((prev) => (prev + 1) % (jumpingNumbersAnimation.length + 1));
-    }, 2500);
-
-    return () => clearInterval(interval);
-  }, [width]);
-
-  useEffect(() => {
-    setJumpingIndex(jumpingNumbersAnimation[currentJumpingIndex]);
-  }, [currentJumpingIndex]);
-
-  useEffect(() => {
-    setCurrentJumpingIndex(0);
-  }, [width]);
+  const {
+    incrementCounter,
+    hoverRandomPositionIndex,
+    isDisplayProgressNumber,
+    hoverCounter,
+    getHoverMessage,
+    fire
+  } = useHoverCounter();
+  const { timeRemaining } = useTimeRemaining(targetDate);
+  const { stickyDinoPositions } = useStickyDino(width, height);
+  const { dinosaurAnimation, dinosaurTransition, jumpingIndex } = useDinoComingSoonAnimation(width);
 
   const renderDigits = (value: number, index: number) => {
     const transition = {
@@ -185,7 +46,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
     return (
       <motion.span
-        className="tracking-tight text-center text-4xl md:text-5xl lg:text-8xl my-4 font-bold text-white font-misterPixel"
+        className="tracking-tight text-center text-4xl md:text-4xl lg:text-8xl my-4 font-bold text-white font-retro-numbers"
         key={index}
         transition={transition}
         animate={jumpingIndex === index ? { y: [0, width < 768 ? -20 : -40, 0] } : { y: 0 }}>
@@ -196,7 +57,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   return (
     <div className="w-full mx-auto">
-      <div className="flex items-center justify-center w-full select-none font-misterPixel">
+      <div className="flex items-center justify-center w-full select-none font-retro-numbers">
         <div className="flex flex-col items-center justify-center w-full">
           <h2 className="text-lg md:text-2xl text-center lg:text-4xl uppercase  text-white">
             dias
@@ -234,18 +95,18 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
           display: scrollPos.scrollYProgress.get() > 0.4 ? 'block' : 'none',
           top:
             !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
-              ? stickyDinoPositions[hoverCounts].top
+              ? stickyDinoPositions[hoverRandomPositionIndex].top
               : -200,
           right:
             !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
-              ? stickyDinoPositions[hoverCounts].right
+              ? stickyDinoPositions[hoverRandomPositionIndex].right
               : -200,
           rotate:
             !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
-              ? stickyDinoPositions[hoverCounts].rotate
+              ? stickyDinoPositions[hoverRandomPositionIndex].rotate
               : 0
         }}
-        onHoverStart={incHover}
+        onHoverStart={incrementCounter}
         transition={{
           duration: 0.4,
           type: 'spring'
@@ -254,6 +115,37 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
         style={{ position: 'fixed' }}>
         <img src={dinoImage} alt="dinosaur" />
       </motion.div>
+      <ReactCanvasConfetti
+        particleCount={150}
+        colors={['#B567DC', '#3b82f6', '#C673EE', '#20E6BD', '#19DCB1', ' #6B6FA4', '#0D1E25']}
+        gravity={0.9}
+        drift={0.2}
+        disableForReducedMotion={true}
+        decay={0.95}
+        scalar={1.2}
+        fire={fire}
+        origin={{ y: 0.85, x: 0.5 }}
+        className="fixed w-full h-full top-0 left-0 -z-10"
+      />
+      {isDisplayProgressNumber() && (
+        <motion.div
+          animate={{
+            opacity: [0, 1, 0]
+          }}
+          transition={{
+            duration: 1.5
+          }}>
+          <h1 className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl md:text-[10rem] lg:text-[14rem] text-white font-retro-numbers">
+            {hoverCounter}
+          </h1>
+          <h2
+            className={`fixed top-1/3 text-2xl md:text-3xl lg:text-5xl text-white font-retro-numbers 
+            ${hoverCounter % 10 === 0 ? 'rotate-[30deg]' : 'rotate-[-30deg]'}
+            ${hoverCounter % 10 === 0 ? 'right-1/3' : 'left-1/3'}`}>
+            {getHoverMessage()}
+          </h2>
+        </motion.div>
+      )}
     </div>
   );
 };
