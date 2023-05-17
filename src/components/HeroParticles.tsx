@@ -42,10 +42,10 @@ const HeroParticles: React.FC<HeroParticlesProps> = ({ className }) => {
         defaultThemes: {},
         delay: 0,
         fullScreen: {
-          enable: false,
-          zIndex: 10
+          enable: true,
+          zIndex: 0
         },
-        detectRetina: true,
+        detectRetina: false,
         duration: 0,
         fpsLimit: 120,
         interactivity: {
