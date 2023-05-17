@@ -1,6 +1,17 @@
 import { useEffect, useState } from 'react';
 
-const messages = ['Ahm...', 'Ok..', 'Ainda não', 'Em breve', 'Aguarde', 'Calma', 'Quase'];
+const messages = [
+  'Ahm...',
+  'Ok..',
+  'Ainda não',
+  'Se calhar',
+  '',
+  'Ui...',
+  'Imagina',
+  '...',
+  'Será?',
+  ''
+];
 
 export default function useHoverCounter() {
   const [hoverCounter, setHoverCounts] = useState(0);

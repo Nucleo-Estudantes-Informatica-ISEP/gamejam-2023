@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import extendAnimationKeyframes from '../utils/extendAnimationKeyframes';
 
-export default function useDinoComingSoonAnimation(width: number) {
-  const JUMPING_NUMBERS_ORDER = [2, 4, 3, 1, 2, 4, 3, 1];
+const JUMPING_NUMBERS_ORDER = [2, 4, 3, 1, 2, 4, 3, 1];
 
+export default function useDinoComingSoonAnimation(width: number) {
   const [jumpingIndex, setJumpingIndex] = useState(0);
   const [currentJumpingIndex, setCurrentJumpingIndex] = useState(0);
 
