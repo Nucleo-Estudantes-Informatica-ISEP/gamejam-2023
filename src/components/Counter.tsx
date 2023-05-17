@@ -90,31 +90,39 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
         className="w-24 lg:w-52 select-none z-20">
         <img src={dinoImage} alt="dinosaur" />
       </motion.div>
-      <motion.div
-        animate={{
-          display: scrollPos.scrollYProgress.get() > 0.4 ? 'block' : 'none',
-          top:
-            !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
-              ? stickyDinoPositions[hoverRandomPositionIndex].top
-              : -200,
-          right:
-            !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
-              ? stickyDinoPositions[hoverRandomPositionIndex].right
-              : -200,
-          rotate:
-            !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
-              ? stickyDinoPositions[hoverRandomPositionIndex].rotate
-              : 0
-        }}
-        onHoverStart={incrementCounter}
-        transition={{
-          duration: 0.4,
-          type: 'spring'
-        }}
-        className="w-24 md:w-40 lg:w-52 select-none"
-        style={{ position: 'fixed' }}>
-        <img src={dinoImage} alt="dinosaur" />
-      </motion.div>
+      {hoverCounter > 0 && (
+        <>
+          <motion.div
+            animate={{
+              display: scrollPos.scrollYProgress.get() > 0.4 ? 'block' : 'none',
+              top:
+                !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
+                  ? stickyDinoPositions[hoverRandomPositionIndex].top
+                  : -200,
+              right:
+                !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
+                  ? stickyDinoPositions[hoverRandomPositionIndex].right
+                  : -200,
+              rotate:
+                !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
+                  ? stickyDinoPositions[hoverRandomPositionIndex].rotate
+                  : 0,
+              opacity: isDisplayProgressNumber() ? [1, 0.35, 1] : 1
+            }}
+            onHoverStart={incrementCounter}
+            transition={{
+              opacity: {
+                duration: 1.5
+              },
+              duration: 0.4,
+              type: 'spring'
+            }}
+            className="w-24 md:w-40 lg:w-52 select-none"
+            style={{ position: 'fixed' }}>
+            <img src={dinoImage} alt="dinosaur" />
+          </motion.div>
+        </>
+      )}
       <ReactCanvasConfetti
         particleCount={150}
         colors={['#B567DC', '#3b82f6', '#C673EE', '#20E6BD', '#19DCB1', ' #6B6FA4', '#0D1E25']}
