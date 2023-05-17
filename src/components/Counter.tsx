@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import { motion, useInView, useScroll } from 'framer-motion';
+import ReactCanvasConfetti from 'react-canvas-confetti';
 
 import paddingNumber from '../utils/paddingNumber';
 import dinoImage from '/dino.gif';
@@ -21,18 +22,18 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   const dinosaurInView = useInView(dinoRef);
   const scrollPos = useScroll();
-  const [hoverRandomPositionIndex, setHoverRandomPositionIndex] = useState(0);
 
-  const { incrementCounter, isDisplayProgressNumber, hoverCounter } = useHoverCounter();
+  const {
+    incrementCounter,
+    hoverRandomPositionIndex,
+    isDisplayProgressNumber,
+    hoverCounter,
+    getHoverMessage,
+    fire
+  } = useHoverCounter();
   const { timeRemaining } = useTimeRemaining(targetDate);
   const { stickyDinoPositions } = useStickyDino(width, height);
   const { dinosaurAnimation, dinosaurTransition, jumpingIndex } = useDinoComingSoonAnimation(width);
-
-  function incHover() {
-    const randomBetween1And3 = Math.floor(Math.random() * 2 + 1);
-    setHoverRandomPositionIndex((c) => (c + randomBetween1And3) % 4);
-    incrementCounter();
-  }
 
   const renderDigits = (value: number, index: number) => {
     const transition = {
@@ -105,7 +106,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
               ? stickyDinoPositions[hoverRandomPositionIndex].rotate
               : 0
         }}
-        onHoverStart={incHover}
+        onHoverStart={incrementCounter}
         transition={{
           duration: 0.4,
           type: 'spring'
@@ -114,17 +115,36 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
         style={{ position: 'fixed' }}>
         <img src={dinoImage} alt="dinosaur" />
       </motion.div>
+      <ReactCanvasConfetti
+        particleCount={150}
+        colors={['#B567DC', '#3b82f6', '#C673EE', '#20E6BD', '#19DCB1', ' #6B6FA4', '#0D1E25']}
+        gravity={0.9}
+        drift={0.2}
+        disableForReducedMotion={true}
+        decay={0.95}
+        scalar={1.2}
+        fire={fire}
+        origin={{ y: 0.85, x: 0.5 }}
+        className="fixed w-full h-full top-0 left-0 -z-10"
+      />
       {isDisplayProgressNumber() && (
-        <motion.h1
+        <motion.div
           animate={{
             opacity: [0, 1, 0]
           }}
           transition={{
             duration: 1.5
-          }}
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl text-white font-retro-numbers">
-          {hoverCounter}
-        </motion.h1>
+          }}>
+          <h1 className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl md:text-[10rem] lg:text-[14rem] text-white font-retro-numbers">
+            {hoverCounter}
+          </h1>
+          <h2
+            className={`fixed top-1/3 text-2xl md:text-3xl lg:text-5xl text-white font-retro-numbers 
+            ${hoverCounter % 10 === 0 ? 'rotate-[30deg]' : 'rotate-[-30deg]'}
+            ${hoverCounter % 10 === 0 ? 'right-1/3' : 'left-1/3'}`}>
+            {getHoverMessage()}
+          </h2>
+        </motion.div>
       )}
     </div>
   );
