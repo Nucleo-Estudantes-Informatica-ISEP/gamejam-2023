@@ -24,7 +24,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   const dinoPosition = useMemo(() => {
     if (width < 768) return -30;
-    if (width < 1024) return -60;
+    if (width < 1024) return -50;
     return -70;
   }, [width, height]);
 
@@ -38,12 +38,8 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
   }, [dinoPosition, height, width]);
 
   function incHover() {
-    const random = Math.floor(Math.random() * 4);
-    if (random === hoverCounts) {
-      incHover();
-      return;
-    }
-    setHoverCounts(random);
+    const randomBetween1And3 = Math.floor(Math.random() * 2 + 1);
+    setHoverCounts((c) => (c + randomBetween1And3) % 4);
   }
 
   const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val, i) =>
@@ -254,7 +250,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
           duration: 0.4,
           type: 'spring'
         }}
-        className="w-24 lg:w-52 select-none"
+        className="w-24 md:w-40 lg:w-52 select-none"
         style={{ position: 'fixed' }}>
         <img src={dinoImage} alt="dinosaur" />
       </motion.div>
