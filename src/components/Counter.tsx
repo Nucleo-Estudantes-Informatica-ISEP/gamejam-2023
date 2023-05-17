@@ -20,7 +20,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   const dinosaurInView = useInView(dinoRef);
   const scrollPos = useScroll();
-  const [hoverCounts, setHoverCounts] = useState(0);
+  const [hoverRandomPositionIndex, setHoverRandomPositionIndex] = useState(0);
 
   const dinoPosition = useMemo(() => {
     if (width < 768) return -30;
@@ -37,9 +37,11 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
     ];
   }, [dinoPosition, height, width]);
 
+  const [hoverCounts, setHoverCounts] = useState(0);
   function incHover() {
     const randomBetween1And3 = Math.floor(Math.random() * 2 + 1);
-    setHoverCounts((c) => (c + randomBetween1And3) % 4);
+    setHoverRandomPositionIndex((c) => (c + randomBetween1And3) % 4);
+    setHoverCounts((c) => c + 1);
   }
 
   const jumpingNumbersAnimation = JUMPING_NUMBERS_ORDER.flatMap((val, i) =>
@@ -185,7 +187,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
     return (
       <motion.span
-        className="tracking-tight text-center text-4xl md:text-5xl lg:text-8xl my-4 font-bold text-white font-misterPixel"
+        className="tracking-tight text-center text-4xl md:text-4xl lg:text-8xl my-4 font-bold text-white font-retro-numbers"
         key={index}
         transition={transition}
         animate={jumpingIndex === index ? { y: [0, width < 768 ? -20 : -40, 0] } : { y: 0 }}>
@@ -196,7 +198,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
 
   return (
     <div className="w-full mx-auto">
-      <div className="flex items-center justify-center w-full select-none font-misterPixel">
+      <div className="flex items-center justify-center w-full select-none font-retro-numbers">
         <div className="flex flex-col items-center justify-center w-full">
           <h2 className="text-lg md:text-2xl text-center lg:text-4xl uppercase  text-white">
             dias
@@ -234,15 +236,15 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
           display: scrollPos.scrollYProgress.get() > 0.4 ? 'block' : 'none',
           top:
             !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
-              ? stickyDinoPositions[hoverCounts].top
+              ? stickyDinoPositions[hoverRandomPositionIndex].top
               : -200,
           right:
             !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
-              ? stickyDinoPositions[hoverCounts].right
+              ? stickyDinoPositions[hoverRandomPositionIndex].right
               : -200,
           rotate:
             !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
-              ? stickyDinoPositions[hoverCounts].rotate
+              ? stickyDinoPositions[hoverRandomPositionIndex].rotate
               : 0
         }}
         onHoverStart={incHover}
@@ -254,6 +256,18 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
         style={{ position: 'fixed' }}>
         <img src={dinoImage} alt="dinosaur" />
       </motion.div>
+      {hoverCounts > 0 && hoverCounts % 10 === 0 && (
+        <motion.h1
+          animate={{
+            opacity: [0, 1, 0]
+          }}
+          transition={{
+            duration: 1.5
+          }}
+          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl text-white font-retro-numbers">
+          {hoverCounts}
+        </motion.h1>
+      )}
     </div>
   );
 };
