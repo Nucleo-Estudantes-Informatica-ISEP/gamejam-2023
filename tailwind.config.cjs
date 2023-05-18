@@ -14,7 +14,10 @@ module.exports = {
         'background-light': '#132C36',
         background: '#0d1e25',
         primary: '#B567DC',
-        secondary: '#3b82f6'
+        secondary: '#3b82f6',
+        bronze: '#cd7f32',
+        silver: '#c0c0c0',
+        gold: '#ffd700'
       },
       animation: {
         'bounce-slow': 'bounce 1.5s ease-in-out infinite',
@@ -24,6 +27,11 @@ module.exports = {
       boxShadow: {
         'intense-shadow-lg': '0px 0px 35px #B567DC',
         'intense-shadow': '0px 0px 35px #B567DC'
+      },
+      dropShadow: {
+        gold: '1px 1px 5px #ffd700',
+        silver: '1px 1px 5px #c0c0c0',
+        bronze: '1px 1px 5px #cd7f32'
       }
     }
   },
