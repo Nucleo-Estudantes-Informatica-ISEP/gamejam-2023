@@ -21,6 +21,8 @@ export default function useHoverCounter() {
 
   function isDisplayProgressIndex(index: number) {
     if (index === 0) return false;
+    if (index === 1) return true;
+    if (index === 3) return true;
     if (index === 5) return true;
     return index % 10 === 0;
   }
