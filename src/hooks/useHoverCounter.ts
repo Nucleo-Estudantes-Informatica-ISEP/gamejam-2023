@@ -14,8 +14,6 @@ const messages = [
   ''
 ];
 
-const MAX_HEALTH = 100;
-
 export default function useHoverCounter() {
   const [hoverCounter, setHoverCounts] = useState(0);
   const [hoverRandomPositionIndex, setHoverRandomPositionIndex] = useState(0);
@@ -45,14 +43,14 @@ export default function useHoverCounter() {
   };
 
   useEffect(() => {
-    if (hoverCounter === MAX_HEALTH) setFire(true);
+    if (hoverCounter > 0 && hoverCounter % 100 === 0) setFire(true);
   }, [hoverCounter]);
 
   return {
     incrementCounter,
     hoverRandomPositionIndex,
     isDisplayProgressNumber,
-    hoverCounter: MAX_HEALTH - hoverCounter,
+    hoverCounter: hoverCounter,
     getHoverMessage,
     fire
   };
