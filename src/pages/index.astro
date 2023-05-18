@@ -1,12 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+import Hero from '../components/Hero';
+import Loading from '../components/Loading';
+
+import Awards from '../components/Awards.astro';
 import ComingSoon from '../components/ComingSoon.astro';
 import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero';
 import Schedule from '../components/Schedule.astro';
 import Container from '../layouts/Container.astro';
-import Awards from '../components/Awards.astro';
 ---
 
 <Layout title="Gamejam 2023">
@@ -15,6 +17,7 @@ import Awards from '../components/Awards.astro';
     <ComingSoon />
     <Schedule />
     <Awards />
+    <Loading client:only />
   </Container>
   <Footer />
 </Layout>
