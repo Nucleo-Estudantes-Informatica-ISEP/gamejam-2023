@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const Loading: React.FC = () => {
   return (
     <section className="w-full flex flex-col items-center justify-center">
-      <h1 className="font-black uppercase text-5xl md:text-6xl lg:text-[9rem] text-primary font-misterPixel">
+      <h1 className="font-black uppercase text-5xl md:text-6xl lg:text-[9rem] text-primary font-misterPixel drop-shadow-whiteStrokeShadow">
         Loading
       </h1>
       <div className="w-5/6 md:w-3/4 h-8 bg-gray-700 rounded-full my-8">

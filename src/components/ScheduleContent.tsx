@@ -40,7 +40,7 @@ const ScheduleContent: React.FC<ScheduleContentProps> = () => {
         </div>
         <table className="text-md w-98 mt-6 w-full text-md md:text-xl table-auto border-collapse">
           <thead>
-            <tr className="border-b-2 text-gray-500 border-gray-500">
+            <tr className="border-b-2 border-gray-500">
               <th className="w-1/3 py-4 px-4 text-left">Hora</th>
               <th className="py-4 text-left">Atividade</th>
             </tr>

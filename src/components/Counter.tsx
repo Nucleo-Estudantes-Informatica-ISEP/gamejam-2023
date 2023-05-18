@@ -58,26 +58,26 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
   return (
     <div className="w-full mx-auto">
       <div className="flex items-center justify-center w-full select-none font-retro-numbers">
-        <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-lg md:text-2xl text-center lg:text-4xl uppercase  text-white">
+        <div className="flex flex-col items-center justify-center w-full drop-shadow-primaryStrokeShadow">
+          <h2 className="text-lg md:text-2xl text-center lg:text-4xl uppercase  text-white ">
             dias
           </h2>
           {renderDigits(timeRemaining.days, 1)}
         </div>
-        <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase  text-white">
+        <div className="flex flex-col items-center justify-center w-full drop-shadow-primaryStrokeShadow">
+          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase  text-white ">
             horas
           </h2>
           {renderDigits(timeRemaining.hours, 2)}
         </div>
-        <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase text-white">
+        <div className="flex flex-col items-center justify-center w-full drop-shadow-primaryStrokeShadow">
+          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase text-white ">
             {width < 768 ? 'min' : 'minutos'}
           </h2>
           {renderDigits(timeRemaining.minutes, 3)}
         </div>
-        <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase  text-white">
+        <div className="flex flex-col items-center justify-center w-full drop-shadow-primaryStrokeShadow">
+          <h2 className="text-lg md:text-2xl text-center lg:text-4xl font-black uppercase  text-white ">
             {width < 768 ? 'seg' : 'segundos'}
           </h2>
           {renderDigits(timeRemaining.seconds, 4)}

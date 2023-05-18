@@ -31,7 +31,9 @@ module.exports = {
       dropShadow: {
         gold: '1px 1px 5px #ffd700',
         silver: '1px 1px 5px #c0c0c0',
-        bronze: '1px 1px 5px #cd7f32'
+        bronze: '1px 1px 5px #cd7f32',
+        whiteStrokeShadow: '3px 3px 0 #fff',
+        primaryStrokeShadow: '3px 3px 0 #B567DC'
       }
     }
   },
