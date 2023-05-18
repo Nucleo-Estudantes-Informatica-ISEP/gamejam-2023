@@ -6,7 +6,7 @@ const Loading: React.FC = () => {
       <h1 className="font-black uppercase text-5xl md:text-6xl lg:text-[9rem] text-primary font-misterPixel">
         Loading
       </h1>
-      <div className="w-3/4 h-8 bg-gray-700 rounded-full my-8">
+      <div className="w-5/6 md:w-3/4 h-8 bg-gray-700 rounded-full my-8">
         <motion.div
           animate={{
             width: ['0%', '20%', '25%', '50%', '65%', '75%', '90%', '100%']
