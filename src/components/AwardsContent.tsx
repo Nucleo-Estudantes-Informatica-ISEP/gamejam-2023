@@ -15,7 +15,11 @@ const AwardsContent: React.FC = () => {
             <p className="text-center text-3xl mr-4 lg:text-5xl drop-shadow-primaryStrokeShadow">
               500
             </p>
-            <img className="w-16 h-16 drop-shadow-none" src="/space.png" alt="Space Invaders" />
+            <img
+              className="w-11 h-11 md:w-14 md:h-14 lg:w-16 lg:h-16 drop-shadow-none"
+              src="/space.png"
+              alt="Space Invaders"
+            />
           </div>
         </div>
       </div>
@@ -33,7 +37,11 @@ const AwardsContent: React.FC = () => {
             <p className="text-center text-3xl mr-4 lg:text-5xl drop-shadow-primaryStrokeShadow">
               300
             </p>
-            <img className="w-16 h-16 drop-shadow-none" src="/space.png" alt="Space Invaders" />
+            <img
+              className="w-11 h-11 md:w-14 md:h-14 lg:w-16 lg:h-16 drop-shadow-none"
+              src="/space.png"
+              alt="Space Invaders"
+            />
           </div>
         </div>
       </div>
@@ -51,7 +59,11 @@ const AwardsContent: React.FC = () => {
             <p className="text-center text-3xl mr-4 lg:text-5xl drop-shadow-primaryStrokeShadow">
               150
             </p>
-            <img className="w-16 h-16 drop-shadow-none" src="/space.png" alt="Space Invaders" />
+            <img
+              className="w-11 h-11 md:w-14 md:h-14 lg:w-16 lg:h-16 drop-shadow-none"
+              src="/space.png"
+              alt="Space Invaders"
+            />
           </div>
         </div>
       </div>
