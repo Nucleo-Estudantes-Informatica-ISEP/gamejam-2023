@@ -2,7 +2,7 @@ const AwardsContent: React.FC = () => {
   return (
     <div className="flex flex-col md:flex-row w-5/6 justify-center md:justify-around items-center mt-5 font-retro-numbers">
       <div className="flex flex-col justify-center my-4 mx-10">
-        <h5 className="text-4xl md:text-6xl my-2 text-center text-yellow-400 drop-shadow-whiteStrokeShadow">
+        <h5 className="text-4xl md:text-6xl my-4 text-center text-yellow-400 drop-shadow-whiteStrokeShadow">
           1º Lugar
         </h5>
         <div className="flex flex-col justify-center items-center relative hover:scale-110 hover:drop-shadow-gold duration-150 ease-in-out">
@@ -13,7 +13,7 @@ const AwardsContent: React.FC = () => {
         </div>
       </div>
       <div className="flex flex-col justify-center my-4 mx-10">
-        <h5 className="text-4xl md:text-6xl my-2 text-center text-slate-500 drop-shadow-whiteStrokeShadow">
+        <h5 className="text-4xl md:text-6xl my-4 text-center text-slate-500 drop-shadow-whiteStrokeShadow">
           2º Lugar
         </h5>
         <div className="flex flex-col justify-center items-center relative hover:scale-110 hover:drop-shadow-silver duration-150 ease-in-out">
@@ -24,7 +24,7 @@ const AwardsContent: React.FC = () => {
         </div>
       </div>
       <div className="flex flex-col justify-center my-4 mx-10">
-        <h5 className="text-4xl md:text-6xl my-2 text-center mb-2 text-amber-600 drop-shadow-whiteStrokeShadow">
+        <h5 className="text-4xl md:text-6xl my-4 text-center mb-2 text-amber-600 drop-shadow-whiteStrokeShadow">
           3º Lugar
         </h5>
         <div className="flex flex-col justify-center items-center relative hover:scale-110 hover:drop-shadow-bronze duration-150 ease-in-out">
