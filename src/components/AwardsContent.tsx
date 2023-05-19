@@ -11,9 +11,12 @@ const AwardsContent: React.FC = () => {
             src="/prize-base.png"
             alt="Prémio de primeiro lugar"
           />
-          <p className="text-center text-3xl lg:text-5xl absolute bottom-1/4 drop-shadow-primaryStrokeShadow">
-            500€
-          </p>
+          <div className="w-full flex items-center justify-center absolute bottom-1/4">
+            <p className="text-center text-3xl mr-4 lg:text-5xl drop-shadow-primaryStrokeShadow">
+              500
+            </p>
+            <img className="w-16 h-16 drop-shadow-none" src="/space.png" alt="Space Invaders" />
+          </div>
         </div>
       </div>
       <div className="flex flex-col justify-center my-4 mx-10">
@@ -26,9 +29,12 @@ const AwardsContent: React.FC = () => {
             src="/prize-base.png"
             alt="Prémio de segundo lugar"
           />
-          <p className="text-center text-3xl lg:text-5xl absolute bottom-1/4 drop-shadow-primaryStrokeShadow">
-            350€
-          </p>
+          <div className="w-full flex items-center justify-center absolute bottom-1/4">
+            <p className="text-center text-3xl mr-4 lg:text-5xl drop-shadow-primaryStrokeShadow">
+              300
+            </p>
+            <img className="w-16 h-16 drop-shadow-none" src="/space.png" alt="Space Invaders" />
+          </div>
         </div>
       </div>
       <div className="flex flex-col justify-center my-4 mx-10">
@@ -41,9 +47,12 @@ const AwardsContent: React.FC = () => {
             src="/prize-base.png"
             alt="Prémio de terceiro lugar"
           />
-          <p className="text-center text-3xl lg:text-5xl absolute bottom-1/4 drop-shadow-primaryStrokeShadow">
-            150€
-          </p>
+          <div className="w-full flex items-center justify-center absolute bottom-1/4">
+            <p className="text-center text-3xl mr-4 lg:text-5xl drop-shadow-primaryStrokeShadow">
+              150
+            </p>
+            <img className="w-16 h-16 drop-shadow-none" src="/space.png" alt="Space Invaders" />
+          </div>
         </div>
       </div>
     </div>

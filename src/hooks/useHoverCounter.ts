@@ -45,7 +45,7 @@ export default function useHoverCounter() {
   };
 
   useEffect(() => {
-    if (hoverCounter > 0 && hoverCounter % 100 === 0) setFire(true);
+    if (hoverCounter > 0 && hoverCounter % 50 === 0) setFire(true);
   }, [hoverCounter]);
 
   return {
