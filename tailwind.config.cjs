@@ -29,10 +29,10 @@ module.exports = {
         'intense-shadow': '0px 0px 35px #B567DC'
       },
       dropShadow: {
-        gold: '1px 1px 5px #ffd700',
-        silver: '1px 1px 5px #c0c0c0',
-        bronze: '1px 1px 5px #cd7f32',
-        whiteStrokeShadow: '3px 3px 0 #fff',
+        gold: '1px 1px 4px #ffd700',
+        silver: '1px 1px 4px #c0c0c0',
+        bronze: '1px 1px 4px #cd7f32',
+        whiteStrokeShadow: '2px 2px 0 #fff',
         primaryStrokeShadow: '3px 3px 0 #B567DC'
       }
     }
