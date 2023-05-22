@@ -1,14 +1,14 @@
 ---
-import AwardsContent from './AwardsContent';
+import AwardsContent from './AwardsContent.astro';
 ---
 
 <section
   class="flex items-center justify-center flex-col gap-y-12 text-white font-misterPixel uppercase"
 >
   <h1
-    class="font-black text-4xl md:text-6xl lg:text-9xl text-primary drop-shadow-whiteStrokeShadow"
+    class="font-black text-4xl md:text-6xl lg:text-9xl text-primary drop-shadow-whiteStrokeShadow -z-10"
   >
     Prémios
   </h1>
-  <AwardsContent client:only />
+  <AwardsContent />
 </section>
