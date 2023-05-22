@@ -7,33 +7,32 @@ const Judges: React.FC = () => {
   return (
     <section
       onMouseOver={() => {
-        console.log('hover');
         setSectionHovered(true);
       }}
       onMouseOut={() => setSectionHovered(false)}
-      className="w-full gap-8 items-center justify-around flex flex-row py-4">
+      className="w-5/6 md:w-full gap-8 items-center justify-around flex flex-col md:flex-row">
       <JudgeItem
         name="name"
         description="description"
-        image="http://github.com/tomasflopes.png"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.oQujJ6xhJOypmueloMEP3gHaHa%26pid%3DApi&f=1&ipt=4d9c90558e6ef844332f73778c98a16bb8804582c6dd59a39fcd2169f2af4af1&ipo=images"
         sectionHovered={sectionHovered}
       />
       <JudgeItem
         name="name"
         description="description"
-        image="http://github.com/tomasflopes.png"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.oQujJ6xhJOypmueloMEP3gHaHa%26pid%3DApi&f=1&ipt=4d9c90558e6ef844332f73778c98a16bb8804582c6dd59a39fcd2169f2af4af1&ipo=images"
         sectionHovered={sectionHovered}
       />
       <JudgeItem
         name="name"
         description="description"
-        image="http://github.com/tomasflopes.png"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.oQujJ6xhJOypmueloMEP3gHaHa%26pid%3DApi&f=1&ipt=4d9c90558e6ef844332f73778c98a16bb8804582c6dd59a39fcd2169f2af4af1&ipo=images"
         sectionHovered={sectionHovered}
       />
       <JudgeItem
         name="name"
         description="description"
-        image="http://github.com/tomasflopes.png"
+        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.oQujJ6xhJOypmueloMEP3gHaHa%26pid%3DApi&f=1&ipt=4d9c90558e6ef844332f73778c98a16bb8804582c6dd59a39fcd2169f2af4af1&ipo=images"
         sectionHovered={sectionHovered}
       />
     </section>
