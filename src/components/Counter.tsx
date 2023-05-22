@@ -136,7 +136,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
             duration: 0.8
           }}
           className="z-50">
-          <h1 className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl md:text-[10rem] lg:text-[14rem] text-white font-retro-numbers">
+          <h1 className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl md:text-[10rem] lg:text-[14rem] text-white font-retro-numbers z-50">
             {hoverCounter}
           </h1>
           <h2
