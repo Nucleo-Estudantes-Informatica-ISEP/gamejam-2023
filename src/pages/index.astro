@@ -4,11 +4,12 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero';
 import Loading from '../components/Loading';
 
-import Awards from '../components/Awards.astro';
+import AwardsContainer from '../components/AwardsContainer.astro';
 import ComingSoon from '../components/ComingSoon.astro';
 import Footer from '../components/Footer.astro';
+import JudgesContainer from '../components/JudgesContainer.astro';
 import Registration from '../components/Registration.astro';
-import Schedule from '../components/Schedule.astro';
+import ScheduleContainer from '../components/ScheduleContainer.astro';
 import Container from '../layouts/Container.astro';
 
 import { Icon } from 'astro-icon';
@@ -31,8 +32,9 @@ import { Icon } from 'astro-icon';
 <Container>
   <ComingSoon />
   <Registration />
-  <Schedule />
-  <Awards />
+  <ScheduleContainer />
+  <AwardsContainer />
+  <JudgesContainer />
   <Loading client:only />
 </Container>
 <Footer />

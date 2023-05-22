@@ -1,0 +1,11 @@
+---
+import Header from './Header.astro';
+import Schedule from './Schedule';
+---
+
+<section
+  class="flex items-center justify-center flex-col gap-y-12 text-white font-misterPixel uppercase"
+>
+  <Header>Horário</Header>
+  <Schedule client:only />
+</section>

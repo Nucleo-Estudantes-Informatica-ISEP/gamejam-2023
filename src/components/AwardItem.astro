@@ -1,0 +1,26 @@
+---
+const { title, prize, textColor, shadowColor } = Astro.props;
+---
+
+<div class="flex flex-col justify-center mx-10">
+  <h5
+    class=`text-4xl -z-10 md:text-4xl lg:text-6xl my-4 text-center text-${textColor} drop-shadow-whiteStrokeShadow`
+  >
+    {title}
+  </h5>
+  <div
+    class=`flex flex-col justify-center items-center relative hover:scale-110 hover:drop-shadow-${shadowColor} duration-150 ease-in-out`
+  >
+    <img class="max-h-72 md:max-h-96 w-full" src="/prize-base.png" alt="Prémio de primeiro lugar" />
+    <div class="w-full flex items-center justify-center absolute bottom-1/4">
+      <p class="text-center text-3xl mr-2 lg:mr-4 lg:text-5xl drop-shadow-primaryStrokeShadow">
+        {prize}
+      </p>
+      <img
+        class="w-11 h-11 md:w-14 md:h-14 lg:w-16 lg:h-16 drop-shadow-none"
+        src="/space.png"
+        alt="Space Invaders"
+      />
+    </div>
+  </div>
+</div>

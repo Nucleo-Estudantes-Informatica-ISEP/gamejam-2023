@@ -1,14 +1,11 @@
 ---
-import AwardsContent from './AwardsContent.astro';
+import AwardItem from './AwardItem.astro';
 ---
 
-<section
-  class="flex items-center justify-center flex-col gap-y-12 text-white font-misterPixel uppercase"
+<div
+  class="flex flex-col md:flex-row w-full lg:w-5/6 justify-center md:justify-around items-center mt-5 font-retro-numbers"
 >
-  <h1
-    class="font-black text-4xl md:text-6xl lg:text-9xl text-primary drop-shadow-whiteStrokeShadow -z-10"
-  >
-    Prémios
-  </h1>
-  <AwardsContent />
-</section>
+  <AwardItem title="1º Lugar" prize="500" textColor="yellow-400" shadowColor="gold" />
+  <AwardItem title="2º Lugar" prize="300" textColor="slate-500" shadowColor="silver" />
+  <AwardItem title="3º Lugar" prize="150" textColor="amber-600" shadowColor="bronze" />
+</div>
