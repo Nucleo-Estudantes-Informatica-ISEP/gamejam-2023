@@ -12,32 +12,37 @@ const Judges: React.FC = () => {
       onMouseOut={() => setSectionHovered(false)}
       className="w-5/6 md:w-full gap-8 items-center justify-around flex flex-col md:flex-row z-0">
       <JudgeItem
-        name="name"
-        description="description"
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.oQujJ6xhJOypmueloMEP3gHaHa%26pid%3DApi&f=1&ipt=4d9c90558e6ef844332f73778c98a16bb8804582c6dd59a39fcd2169f2af4af1&ipo=images"
+        name="Carlos Vaz de Carvalho"
+        description="Professor Coordenador do DEI"
+        image="./carlos.jpg"
         sectionHovered={sectionHovered}
         isLeft={false}
+        overDescription="Professor Coordenador do DEI no Instituto Superior de Engenharia do Porto (ISEP). Diretor da Virtual Campus Lda, uma PME (pequena média empresa) dedicada à Aprendizagem Aprimorada por Tecnologia e “Serious Games”"
       />
       <JudgeItem
-        name="name"
-        description="description"
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.oQujJ6xhJOypmueloMEP3gHaHa%26pid%3DApi&f=1&ipt=4d9c90558e6ef844332f73778c98a16bb8804582c6dd59a39fcd2169f2af4af1&ipo=images"
+        name="Dulce Mota"
+        description="Professora e sub-diretora do DEI"
+        image="./dulce.jpg"
         sectionHovered={sectionHovered}
         isLeft={false}
+        overDescription="Doutorada em Engenharia Informática pela FEUP, é Professora no DEI do ISEP desde 1992. Subdiretora do DEI desde 2020. Suas áreas de pesquisa incluem Sistemas de Recomendação e Ensino à Distância."
       />
       <JudgeItem
-        name="name"
-        description="description"
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.oQujJ6xhJOypmueloMEP3gHaHa%26pid%3DApi&f=1&ipt=4d9c90558e6ef844332f73778c98a16bb8804582c6dd59a39fcd2169f2af4af1&ipo=images"
+        name="Marílio Cardoso"
+        description="Professor Adjunto e sub-diretor do DEI"
+        image="./marilio.jpg"
         sectionHovered={sectionHovered}
         isLeft={true}
+        overDescription="Licenciado em Engenharia Eletrotécnica. Experiência em eficiência energética e sistemas educativos inovadores. Principais interesses: Aprendizado de programação, sistemas educacionais inovadores e soluções centradas no ensino de ciência da computação e multimedia."
       />
       <JudgeItem
-        name="name"
-        description="description"
-        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.oQujJ6xhJOypmueloMEP3gHaHa%26pid%3DApi&f=1&ipt=4d9c90558e6ef844332f73778c98a16bb8804582c6dd59a39fcd2169f2af4af1&ipo=images"
+        name="Gonçalo Pinto"
+        description="Streamer na Twitch"
+        image="./gonçalo_pinto.jpeg"
         sectionHovered={sectionHovered}
         isLeft={true}
+        overDescription="O meu nome é Gonçalo, tenho 19 anos. Desde o dia 24/01 que estou full-time streamer pois suspendi a matrícula da faculdade para lutar pelo meu sonho de criança, tendo começado a streamar diariamente desde 24/07."
+        stretchedImage={true}
       />
     </section>
   );
