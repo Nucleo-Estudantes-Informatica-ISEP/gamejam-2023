@@ -1,15 +1,29 @@
 ---
-const { title, prize, textColor, shadowColor } = Astro.props;
+const { title, prize, color } = Astro.props;
 ---
 
 <div class="flex flex-col justify-center mx-10">
   <h5
-    class={`text-4xl -z-10 md:text-4xl lg:text-6xl my-4 text-center text-${textColor} drop-shadow-whiteStrokeShadow`}
+    class:list={[
+      'text-4xl md:text-4xl lg:text-6xl my-4 text-center drop-shadow-whiteStrokeShadow',
+      {
+        'text-yellow-400': color === 'gold',
+        'text-slate-500': color === 'silver',
+        'text-amber-600': color === 'bronze'
+      }
+    ]}
   >
     {title}
   </h5>
   <div
-    class={`flex flex-col justify-center items-center relative hover:scale-110 hover:drop-shadow-${shadowColor} duration-150 ease-in-out`}
+    class:list={[
+      'flex flex-col justify-center items-center relative hover:scale-110 duration-150 ease-in-out',
+      {
+        'hover:drop-shadow-gold': color === 'gold',
+        'hover:drop-shadow-silver': color === 'silver',
+        'hover:drop-shadow-bronze': color === 'bronze'
+      }
+    ]}
   >
     <img class="max-h-72 md:max-h-96 w-full" src="/prize-base.png" alt="Prémio de primeiro lugar" />
     <div class="w-full flex items-center justify-center absolute bottom-1/4">
