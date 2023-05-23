@@ -44,6 +44,7 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
       <motion.p
         onMouseOver={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onMouseDown={() => setIsHovered(false)}
         className={`absolute w-full ${
           isLeft ? 'md:-inset-x-1/2' : 'md:inset-x-1/2'
         } -top-40 bg-white border-slate-400 border-2 rounded-lg text-black text-lg text-center px-4 py-2 z-10`}
