@@ -7,9 +7,21 @@ import Sponsor from './Sponsor.astro';
   class="flex items-center gap-8 justify-center flex-col gap-y-12 text-white font-misterPixel uppercase"
 >
   <Header>Patrocinadores</Header>
-  <div id="container" class="grid grid-cols-4 gap-24 py-12 relative">
-    <img id="pacman" class="absolute w-16 h-16 -top-10 -left-10" src="/pacman.gif" alt="Pacman" />
-    <div id="food" class="absolute h-8 w-8 bg-yellow-500 rounded-full animate-pacman-food"></div>
+  <div
+    id="container"
+    class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-4 py-12 relative"
+  >
+    <img
+      id="pacman"
+      class="hidden md:block absolute w-14 h-14 -top-10 -left-10"
+      src="/pacman.gif"
+      alt="Pacman"
+    />
+    <div
+      id="food"
+      class="hidden md:block absolute h-8 w-8 bg-yellow-500 rounded-full animate-pacman-food"
+    >
+    </div>
     <Sponsor />
     <Sponsor />
     <Sponsor />
@@ -22,6 +34,8 @@ import Sponsor from './Sponsor.astro';
 </section>
 
 <script is:inline>
+  if (!window) return;
+  if (window.innerWidth < 768) return;
   const pacman = document.getElementById('pacman');
   const sponsors = document.querySelectorAll('#sponsor');
   const food = document.getElementById('food');
@@ -119,7 +133,7 @@ import Sponsor from './Sponsor.astro';
         {
           x,
           y,
-          width: food.getBoundingClientRect().width * 1.2
+          width: food.getBoundingClientRect().width * 1.5
         },
         sponsors
       )
@@ -128,14 +142,6 @@ import Sponsor from './Sponsor.astro';
 
     if (colides({ x, y, width: food.getBoundingClientRect().width }, pacman)) return spawnFood();
 
-    if (
-      x < 0 ||
-      x > window.innerWidth - window.innerWidth / 4 ||
-      y < 0 ||
-      y > window.innerHeight - window.innerHeight / 4
-    )
-      return spawnFood();
-
     return { x, y };
   };
 
@@ -143,7 +149,13 @@ import Sponsor from './Sponsor.astro';
     for (let i = 0; i < sponsors.length; i++)
       if (colides({ x, y, width }, sponsors[i])) return true;
 
-    if (x < 0 || x > window.innerWidth || y < 0 || y > window.innerHeight) return true;
+    if (
+      x < 0 ||
+      x > window.innerWidth - width * 1.5 ||
+      y < 0 ||
+      y > window.innerHeight - width * 1.5
+    )
+      return true;
     return false;
   };
 
