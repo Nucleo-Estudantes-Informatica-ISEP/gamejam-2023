@@ -21,24 +21,32 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
   return (
     <article className="relative w-full">
       <motion.div
-        initial={{ scale: 0 }}
-        whileInView={{ scale: 1 }}
-        whileHover={{ scale: 1.05 }}
         onMouseOver={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        transition={{ duration: 0.1 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        animate={{
+          scale: isHovered ? 1.05 : 1,
+          filter: isHovered
+            ? 'brightness(100%) blur(0px)'
+            : sectionHovered
+            ? 'brightness(50%) blur(4px)'
+            : 'brightness(100%) blur(0)'
+        }}
+        transition={{ opacity: { duration: 0.5 }, duration: 0.1 }}
         viewport={{ once: true }}
-        className={`bg-background-light w-full rounded-lg px-4 py-6 cursor-pointer hover:shadow-intense-shadow hover:blur-none hover:brightness-100 duration-100 ease-in-out z-10 ${
-          sectionHovered && 'md:brightness-50 md:blur-sm'
-        }`}>
+        className={`bg-background-light w-full rounded-lg px-4 py-6 cursor-pointer z-0 duration-100 ease-in-out 
+        ${isHovered && 'shadow-intense-shadow'}`}>
         <img className="rounded-md mb-4" src={image} alt={name} />
         <h3 className="text-2xl md:text-4xl">{name}</h3>
         <p className="text-lg md:text-xl">{description}</p>
       </motion.div>
       <motion.p
+        onMouseOver={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         className={`absolute w-full ${
           isLeft ? 'md:-inset-x-1/2' : 'md:inset-x-1/2'
-        } -top-40 bg-white border-slate-400 border-2 rounded-lg text-black text-lg text-center px-4 py-2 z-40`}
+        } -top-40 bg-white border-slate-400 border-2 rounded-lg text-black text-lg text-center px-4 py-2 z-10`}
         animate={{
           scale: isHovered ? [0, 1] : 0,
           opacity: isHovered ? 1 : 0
