@@ -23,7 +23,15 @@ module.exports = {
       animation: {
         'bounce-slow': 'bounce 1.5s ease-in-out infinite',
         'bounce-delayed-1': 'bounce 1.5s ease-in-out infinite 50ms',
-        'bounce-delayed-2': 'bounce 1.5s ease-in-out infinite 100ms'
+        'bounce-delayed-2': 'bounce 1.5s ease-in-out infinite 100ms',
+        'pacman-food': 'pacman 1.5s ease-in-out infinite'
+      },
+      keyframes: {
+        pacman: {
+          '0%': { opacity: 0.8 },
+          '50%': { opacity: 1 },
+          '100%': { opacity: 0.8 }
+        }
       },
       boxShadow: {
         'intense-shadow-lg': '0px 0px 35px #B567DC',
