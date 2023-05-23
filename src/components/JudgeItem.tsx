@@ -23,7 +23,7 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <article className="relative w-1/2 md:w-full h-full mb-24">
+    <article className="relative w-1/2 h-full md:w-full mb-24">
       <motion.div
         onMouseOver={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -41,10 +41,10 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
         viewport={{ once: true }}
         className={`bg-background-light w-full rounded-lg px-4 py-6 cursor-pointer z-0 duration-100 ease-in-out 
         ${isHovered && 'shadow-intense-shadow'}`}>
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-80">
           <img
             className={`rounded-md mb-4 w-48 justify-center items-center mx-auto ${
-              stretchedImage ? 'h-72' : 'h-64'
+              stretchedImage ? 'h-64' : 'h-60'
             }`}
             src={image}
             alt={name}
