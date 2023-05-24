@@ -40,15 +40,15 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
         viewport={{ once: true }}
         className={`bg-background-light max-w-xs w-full rounded-lg px-4 py-6 cursor-pointer z-0 duration-100 ease-in-out 
         ${isHovered && 'shadow-intense-shadow'}`}>
-        <div className="flex flex-col items-start justify-between h-80">
+        <div className="flex flex-col items-start min-h-fit h-80 gap-6">
           <img
-            className="rounded-md mb-4 w-48 aspect-square justify-center items-center mx-auto "
+            className="rounded-md w-full aspect-[25/23] justify-center items-center mx-auto "
             src={image}
             alt={name}
           />
-          <div>
-            <h3 className="text-2xl md:text-3xl">{name}</h3>
-            <p className="text-sm md:text-base">{description}</p>
+          <div className="flex flex-col justify-between">
+            <h3 className="text-xl md:text-2xl">{name}</h3>
+            <p className="text-sm md:text-md">{description}</p>
           </div>
         </div>
       </motion.div>
@@ -58,7 +58,7 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
         onMouseDown={() => setIsHovered(false)}
         className={`absolute w-full ${
           isLeft ? 'md:-inset-x-1/2' : 'md:inset-x-1/2'
-        } -top-48 bg-white border-slate-400 border-2 rounded-lg text-black text-lg text-center px-4 py-2 z-10`}
+        } bottom-72 bg-white border-slate-400 border-2 rounded-lg text-black text-sm text-center px-4 py-2 z-10`}
         animate={{
           scale: isHovered ? [0, 1] : 0,
           opacity: isHovered ? 1 : 0

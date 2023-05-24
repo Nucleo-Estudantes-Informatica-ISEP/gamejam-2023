@@ -2,10 +2,10 @@
 const { title, prize, color } = Astro.props;
 ---
 
-<div class="flex flex-col justify-center mx-10">
+<div class="flex flex-col justify-center">
   <h5
     class:list={[
-      'text-4xl md:text-4xl lg:text-6xl my-4 text-center drop-shadow-whiteStrokeShadow',
+      'text-3xl md:text-4xl lg:text-6xl my-4 text-center drop-shadow-whiteStrokeShadow',
       {
         'text-yellow-400': color === 'gold',
         'text-slate-500': color === 'silver',
@@ -31,7 +31,7 @@ const { title, prize, color } = Astro.props;
         {prize}
       </p>
       <img
-        class="w-11 h-11 md:w-14 md:h-14 lg:w-16 lg:h-16 drop-shadow-none"
+        class="w-11 h-11 md:w-12 md:h-12 lg:w-16 lg:h-16 drop-shadow-none"
         src="/space.png"
         alt="Space Invaders"
       />
