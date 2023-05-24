@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import useWindowDimensions from '../utils/useWindowDimensions';
 
 interface JudgeItemProps {
   name: string;
@@ -20,6 +21,7 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
   overDescription
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { width } = useWindowDimensions();
 
   return (
     <article className="relative w-full flex items-center justify-center">
@@ -60,8 +62,8 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
           isLeft ? 'md:-inset-x-1/2' : 'md:inset-x-1/2'
         } bottom-72 bg-white border-slate-400 border-2 rounded-lg text-black text-sm text-center px-4 py-2 z-10`}
         animate={{
-          scale: isHovered ? [0, 1] : 0,
-          opacity: isHovered ? 1 : 0
+          scale: isHovered && width > 768 ? [0, 1] : 0,
+          opacity: isHovered && width > 768 ? 1 : 0
         }}
         transition={{ duration: 0.2 }}>
         {overDescription}
