@@ -1,0 +1,173 @@
+---
+import Header from './Header.astro';
+import Sponsor from './Sponsor.astro';
+---
+
+<section
+  class="flex items-center gap-8 justify-center flex-col gap-y-12 text-white font-misterPixel uppercase w-full"
+>
+  <Header>Patrocinadores</Header>
+  <div
+    id="container"
+    class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-4 py-12 relative"
+  >
+    <img
+      id="pacman"
+      class="hidden md:block absolute w-14 h-14 -top-10 -left-10"
+      src="/pacman.gif"
+      alt="Pacman"
+    />
+    <div
+      id="food"
+      class="hidden md:block absolute h-8 w-8 bg-yellow-500 rounded-full animate-pacman-food"
+    >
+    </div>
+    <Sponsor />
+    <Sponsor />
+    <Sponsor />
+    <Sponsor />
+    <Sponsor />
+    <Sponsor />
+    <Sponsor />
+    <Sponsor />
+  </div>
+</section>
+
+<script is:inline>
+  const pacman = document.getElementById('pacman');
+  const sponsors = document.querySelectorAll('#sponsor');
+  const food = document.getElementById('food');
+  const container = document.getElementById('container');
+
+  const STEP = 24;
+
+  document.addEventListener('keydown', (event) => {
+    event.preventDefault();
+    if (event.key === 'ArrowUp' || event.key === 'w' || event.key === 'k') {
+      if (
+        colidesWithAny(
+          {
+            x: pacman.getBoundingClientRect().x,
+            y: pacman.getBoundingClientRect().y - STEP,
+            width: pacman.getBoundingClientRect().width
+          },
+          sponsors
+        )
+      )
+        return;
+      pacman.style.top = `${pacman.offsetTop - STEP}px`;
+      pacman.style.rotate = '-90deg';
+    } else if (event.key === 'ArrowDown' || event.key === 's' || event.key === 'j') {
+      if (
+        colidesWithAny(
+          {
+            x: pacman.getBoundingClientRect().x,
+            y: pacman.getBoundingClientRect().y + STEP,
+            width: pacman.getBoundingClientRect().width
+          },
+          sponsors
+        )
+      )
+        return;
+      pacman.style.top = `${pacman.offsetTop + STEP}px`;
+      pacman.style.rotate = '90deg';
+    } else if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'h') {
+      if (
+        colidesWithAny(
+          {
+            x: pacman.getBoundingClientRect().x - STEP,
+            y: pacman.getBoundingClientRect().y,
+            width: pacman.getBoundingClientRect().width
+          },
+          sponsors
+        )
+      )
+        return;
+      pacman.style.rotate = '180deg';
+      pacman.style.left = `${pacman.offsetLeft - STEP}px`;
+    } else if (event.key === 'ArrowRight' || event.key === 'd' || event.key === 'l') {
+      if (
+        colidesWithAny(
+          {
+            x: pacman.getBoundingClientRect().x + STEP,
+            y: pacman.getBoundingClientRect().y,
+            width: pacman.getBoundingClientRect().width
+          },
+          sponsors
+        )
+      )
+        return;
+      pacman.style.left = `${pacman.offsetLeft + STEP}px`;
+      pacman.style.rotate = '0deg';
+    }
+    checkFoodColision();
+  });
+
+  const checkFoodColision = () => {
+    if (
+      colides(
+        {
+          x: pacman.getBoundingClientRect().x,
+          y: pacman.getBoundingClientRect().y,
+          width: pacman.getBoundingClientRect().width
+        },
+        food
+      )
+    ) {
+      food.remove();
+      const newFood = spawnFood();
+      container.appendChild(food);
+      food.style.top = `${newFood.y}px`;
+      food.style.left = `${newFood.x}px`;
+    }
+  };
+
+  const spawnFood = () => {
+    let colidesWithPacman, colidesWithSponsorOrBorder;
+    let x, y;
+
+    do {
+      console.log('trying');
+      x = Math.floor(Math.random() * window.innerWidth);
+      y = Math.floor(Math.random() * window.innerHeight);
+
+      colidesWithSponsorOrBorder = colidesWithAny(
+        {
+          x,
+          y,
+          width: food.getBoundingClientRect().width * 5
+        },
+        sponsors
+      );
+      colidesWithPacman = colides({ x, y, width: food.getBoundingClientRect().width * 5 }, pacman);
+    } while (colidesWithSponsorOrBorder || colidesWithPacman);
+
+    console.log('returning');
+    return { x, y };
+  };
+
+  const colidesWithAny = ({ x, y, width }, sponsors) => {
+    for (let i = 0; i < sponsors.length; i++)
+      if (colides({ x, y, width }, sponsors[i])) return true;
+
+    if (x < 0 || x > window.innerWidth - width * 2 || y < 0 || y > window.innerHeight - width * 2)
+      return true;
+    return false;
+  };
+
+  const colides = ({ x, y, width }, subject) => {
+    const subjectRect = subject.getBoundingClientRect();
+
+    if (
+      x < subjectRect.x + subjectRect.width &&
+      x + width > subjectRect.x &&
+      y < subjectRect.y + subjectRect.height &&
+      y + width > subjectRect.y
+    )
+      return true;
+
+    return false;
+  };
+
+  spawnFood();
+</script>
