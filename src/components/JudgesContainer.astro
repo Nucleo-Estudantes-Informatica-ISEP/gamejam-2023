@@ -3,9 +3,7 @@ import Header from './Header.astro';
 import Judges from './Judges';
 ---
 
-<section
-  class="flex items-center justify-center flex-col gap-y-12 text-white font-misterPixel uppercase"
->
+<section class="flex items-center gap-12 flex-col text-white font-misterPixel uppercase">
   <Header>Judges</Header>
   <Judges client:only />
 </section>

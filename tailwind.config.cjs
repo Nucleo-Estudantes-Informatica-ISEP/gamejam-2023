@@ -24,13 +24,13 @@ module.exports = {
         'bounce-slow': 'bounce 1.5s ease-in-out infinite',
         'bounce-delayed-1': 'bounce 1.5s ease-in-out infinite 50ms',
         'bounce-delayed-2': 'bounce 1.5s ease-in-out infinite 100ms',
-        'pacman-food': 'pacman 1.5s ease-in-out infinite'
+        'pulse-food': 'pulse-slow 1.5s ease-in-out infinite'
       },
       keyframes: {
-        pacman: {
-          '0%': { opacity: 0.8 },
+        'pulse-slow': {
+          '0%': { opacity: 0.6 },
           '50%': { opacity: 1 },
-          '100%': { opacity: 0.8 }
+          '100%': { opacity: 0.6 }
         }
       },
       boxShadow: {

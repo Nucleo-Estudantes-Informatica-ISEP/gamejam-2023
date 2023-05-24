@@ -17,13 +17,12 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
   description,
   sectionHovered,
   isLeft,
-  overDescription,
-  stretchedImage
+  overDescription
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <article className="relative w-1/2 h-full md:w-full mb-24">
+    <article className="relative w-full flex items-center justify-center">
       <motion.div
         onMouseOver={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -39,18 +38,18 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
         }}
         transition={{ opacity: { duration: 0.5 }, duration: 0.1 }}
         viewport={{ once: true }}
-        className={`bg-background-light w-full rounded-lg px-4 py-6 cursor-pointer z-0 duration-100 ease-in-out 
+        className={`bg-background-light max-w-xs w-full rounded-lg px-4 py-6 cursor-pointer z-0 duration-100 ease-in-out 
         ${isHovered && 'shadow-intense-shadow'}`}>
-        <div className="flex flex-col h-80">
+        <div className="flex flex-col items-start justify-between h-80">
           <img
-            className={`rounded-md mb-4 w-48 justify-center items-center mx-auto ${
-              stretchedImage ? 'h-64' : 'h-60'
-            }`}
+            className="rounded-md mb-4 w-48 aspect-square justify-center items-center mx-auto "
             src={image}
             alt={name}
           />
-          <h3 className="text-2xl md:text-3xl">{name}</h3>
-          <p className="text-sm md:text-base">{description}</p>
+          <div>
+            <h3 className="text-2xl md:text-3xl">{name}</h3>
+            <p className="text-sm md:text-base">{description}</p>
+          </div>
         </div>
       </motion.div>
       <motion.p
@@ -59,7 +58,7 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
         onMouseDown={() => setIsHovered(false)}
         className={`absolute w-full ${
           isLeft ? 'md:-inset-x-1/2' : 'md:inset-x-1/2'
-        } -top-56 bg-white border-slate-400 border-2 rounded-lg text-black text-lg text-center px-4 py-2 z-10`}
+        } -top-48 bg-white border-slate-400 border-2 rounded-lg text-black text-lg text-center px-4 py-2 z-10`}
         animate={{
           scale: isHovered ? [0, 1] : 0,
           opacity: isHovered ? 1 : 0

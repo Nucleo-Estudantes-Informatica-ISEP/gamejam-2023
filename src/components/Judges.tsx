@@ -10,7 +10,7 @@ const Judges: React.FC = () => {
         setSectionHovered(true);
       }}
       onMouseOut={() => setSectionHovered(false)}
-      className="w-5/6 md:w-full gap-8 items-center justify-around flex flex-col md:flex-row z-0">
+      className="w-full items-center justify-around md:justify-around gap-y-24 flex flex-col md:flex-row z-0">
       <JudgeItem
         name="Carlos Vaz de Carvalho"
         description="Professor Coordenador do DEI"

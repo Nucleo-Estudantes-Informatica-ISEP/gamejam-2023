@@ -4,7 +4,7 @@ import Sponsor from './Sponsor.astro';
 ---
 
 <section
-  class="flex items-center gap-8 justify-center flex-col gap-y-12 text-white font-misterPixel uppercase"
+  class="flex items-center gap-8 justify-center flex-col gap-y-12 text-white font-misterPixel uppercase w-full"
 >
   <Header>Patrocinadores</Header>
   <div
@@ -34,8 +34,6 @@ import Sponsor from './Sponsor.astro';
 </section>
 
 <script is:inline>
-  if (!window) return;
-  if (window.innerWidth < 768) return;
   const pacman = document.getElementById('pacman');
   const sponsors = document.querySelectorAll('#sponsor');
   const food = document.getElementById('food');
@@ -45,7 +43,7 @@ import Sponsor from './Sponsor.astro';
 
   document.addEventListener('keydown', (event) => {
     event.preventDefault();
-    if (event.key === 'ArrowUp' || event.key === 'w') {
+    if (event.key === 'ArrowUp' || event.key === 'w' || event.key === 'k') {
       if (
         colidesWithAny(
           {
@@ -59,7 +57,7 @@ import Sponsor from './Sponsor.astro';
         return;
       pacman.style.top = `${pacman.offsetTop - STEP}px`;
       pacman.style.rotate = '-90deg';
-    } else if (event.key === 'ArrowDown' || event.key === 's') {
+    } else if (event.key === 'ArrowDown' || event.key === 's' || event.key === 'j') {
       if (
         colidesWithAny(
           {
@@ -73,7 +71,7 @@ import Sponsor from './Sponsor.astro';
         return;
       pacman.style.top = `${pacman.offsetTop + STEP}px`;
       pacman.style.rotate = '90deg';
-    } else if (event.key === 'ArrowLeft' || event.key === 'a') {
+    } else if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'h') {
       if (
         colidesWithAny(
           {
@@ -87,7 +85,7 @@ import Sponsor from './Sponsor.astro';
         return;
       pacman.style.rotate = '180deg';
       pacman.style.left = `${pacman.offsetLeft - STEP}px`;
-    } else if (event.key === 'ArrowRight' || event.key === 'd') {
+    } else if (event.key === 'ArrowRight' || event.key === 'd' || event.key === 'l') {
       if (
         colidesWithAny(
           {
@@ -125,23 +123,26 @@ import Sponsor from './Sponsor.astro';
   };
 
   const spawnFood = () => {
-    const x = Math.floor(Math.random() * window.innerWidth);
-    const y = Math.floor(Math.random() * window.innerHeight);
+    let colidesWithPacman, colidesWithSponsorOrBorder;
+    let x, y;
 
-    if (
-      colidesWithAny(
+    do {
+      console.log('trying');
+      x = Math.floor(Math.random() * window.innerWidth);
+      y = Math.floor(Math.random() * window.innerHeight);
+
+      colidesWithSponsorOrBorder = colidesWithAny(
         {
           x,
           y,
-          width: food.getBoundingClientRect().width * 1.5
+          width: food.getBoundingClientRect().width * 5
         },
         sponsors
-      )
-    )
-      return spawnFood();
+      );
+      colidesWithPacman = colides({ x, y, width: food.getBoundingClientRect().width * 5 }, pacman);
+    } while (colidesWithSponsorOrBorder || colidesWithPacman);
 
-    if (colides({ x, y, width: food.getBoundingClientRect().width }, pacman)) return spawnFood();
-
+    console.log('returning');
     return { x, y };
   };
 
@@ -149,12 +150,7 @@ import Sponsor from './Sponsor.astro';
     for (let i = 0; i < sponsors.length; i++)
       if (colides({ x, y, width }, sponsors[i])) return true;
 
-    if (
-      x < 0 ||
-      x > window.innerWidth - width * 1.5 ||
-      y < 0 ||
-      y > window.innerHeight - width * 1.5
-    )
+    if (x < 0 || x > window.innerWidth - width * 2 || y < 0 || y > window.innerHeight - width * 2)
       return true;
     return false;
   };
