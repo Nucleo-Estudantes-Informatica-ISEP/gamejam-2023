@@ -24,7 +24,7 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
     <article className="relative w-full flex items-center justify-center">
       <motion.div
         onMouseOver={() => setIsHovered(true)}
-        onMouseDown={() => setIsHovered(false)}
+        onMouseDown={() => (isHovered ? setIsHovered(false) : setIsHovered(true))}
         onMouseLeave={() => setIsHovered(false)}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
