@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import JudgeItem from './JudgeItem';
 import useWindowDimensions from '../utils/useWindowDimensions';
+import JudgeItem from './JudgeItem';
 
 const Judges: React.FC = () => {
   const [sectionHovered, setSectionHovered] = useState(false);
