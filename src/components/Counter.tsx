@@ -89,7 +89,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
           transition={dinosaurTransition}
           animate={dinosaurAnimation}
           className="w-24 lg:w-52 select-none z-20">
-          <img src={dinoImage} alt="dinosaur" />
+          <img className="drop-shadow-primaryStrokeShadow" src={dinoImage} alt="dinosaur" />
         </motion.div>
         <motion.div
           animate={{

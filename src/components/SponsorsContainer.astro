@@ -6,7 +6,7 @@ import Sponsor from './Sponsor.astro';
 <section
   class="flex items-center gap-8 justify-center flex-col gap-y-12 text-white font-misterPixel uppercase w-full"
 >
-  <Header>Patrocinadores</Header>
+  <Header id="header">Patrocinadores</Header>
   <div
     id="container"
     class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-4 py-12 relative"
@@ -19,7 +19,7 @@ import Sponsor from './Sponsor.astro';
     />
     <div
       id="food"
-      class="hidden md:block absolute h-8 w-8 bg-yellow-500 rounded-full animate-pacman-food"
+      class="hidden md:block absolute h-8 w-8 bg-yellow-500 rounded-full animate-pacman-food z-20"
     >
     </div>
     <Sponsor />
@@ -38,6 +38,7 @@ import Sponsor from './Sponsor.astro';
   const sponsors = document.querySelectorAll('#sponsor');
   const food = document.getElementById('food');
   const container = document.getElementById('container');
+  const header = document.getElementById('header');
 
   const STEP = 24;
 
@@ -114,11 +115,9 @@ import Sponsor from './Sponsor.astro';
         food
       )
     ) {
-      food.remove();
-      const newFood = spawnFood();
-      container.appendChild(food);
-      food.style.top = `${newFood.y}px`;
-      food.style.left = `${newFood.x}px`;
+      const { x, y } = spawnFood();
+      food.style.top = `${y - container.getBoundingClientRect().y}px`;
+      food.style.left = `${x}px`;
     }
   };
 
@@ -127,7 +126,6 @@ import Sponsor from './Sponsor.astro';
     let x, y;
 
     do {
-      console.log('trying');
       x = Math.floor(Math.random() * window.innerWidth);
       y = Math.floor(Math.random() * window.innerHeight);
 
@@ -135,23 +133,37 @@ import Sponsor from './Sponsor.astro';
         {
           x,
           y,
-          width: food.getBoundingClientRect().width * 5
+          width: pacman.getBoundingClientRect().width * 2
         },
         sponsors
       );
-      colidesWithPacman = colides({ x, y, width: food.getBoundingClientRect().width * 5 }, pacman);
+      colidesWithPacman = colides(
+        { x, y, width: pacman.getBoundingClientRect().width * 4 },
+        pacman
+      );
     } while (colidesWithSponsorOrBorder || colidesWithPacman);
 
-    console.log('returning');
     return { x, y };
   };
 
-  const colidesWithAny = ({ x, y, width }, sponsors) => {
+  const colidesWithSponsors = () => {
     for (let i = 0; i < sponsors.length; i++)
       if (colides({ x, y, width }, sponsors[i])) return true;
 
+    return false;
+  };
+
+  const colidesWithViewport = () => {
     if (x < 0 || x > window.innerWidth - width * 2 || y < 0 || y > window.innerHeight - width * 2)
       return true;
+    return false;
+  };
+
+  const colidesWithAny = ({ x, y, width }, sponsors) => {
+    if (colidesWithSponsors()) return true;
+    if (colidesWithViewport()) return true;
+
+    //if (y > header.getBoundingClientRect().y) return true;
     return false;
   };
 
@@ -169,5 +181,5 @@ import Sponsor from './Sponsor.astro';
     return false;
   };
 
-  spawnFood();
+  checkFoodColision();
 </script>

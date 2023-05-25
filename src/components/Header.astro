@@ -1,4 +1,9 @@
+---
+const { id } = Astro.props;
+---
+
 <h1
+  id={id}
   class="font-black text-5xl md:text-6xl lg:text-9xl text-primary drop-shadow-whiteStrokeShadow -z-10 font-misterPixel uppercase"
 >
   <slot />
