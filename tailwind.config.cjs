@@ -24,10 +24,10 @@ module.exports = {
         'bounce-slow': 'bounce 1.5s ease-in-out infinite',
         'bounce-delayed-1': 'bounce 1.5s ease-in-out infinite 50ms',
         'bounce-delayed-2': 'bounce 1.5s ease-in-out infinite 100ms',
-        'pulse-food': 'pulse-slow 1.5s ease-in-out infinite'
+        'pulse-slow': 'pulse 1.5s ease-in-out infinite'
       },
       keyframes: {
-        'pulse-slow': {
+        pulse: {
           '0%': { opacity: 0.6 },
           '50%': { opacity: 1 },
           '100%': { opacity: 0.6 }
