@@ -93,17 +93,17 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
         </motion.div>
         <motion.div
           animate={{
-            display: scrollPos.scrollYProgress.get() > 0.4 ? 'block' : 'none',
+            display: scrollPos.scrollYProgress.get() > 0.2 ? 'block' : 'none',
             top:
-              !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
+              !dinosaurInView && scrollPos.scrollYProgress.get() > 0.2
                 ? stickyDinoPositions[hoverRandomPositionIndex].top
                 : -200,
             right:
-              !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
+              !dinosaurInView && scrollPos.scrollYProgress.get() > 0.2
                 ? stickyDinoPositions[hoverRandomPositionIndex].right
                 : -200,
             rotate:
-              !dinosaurInView && scrollPos.scrollYProgress.get() > 0.4
+              !dinosaurInView && scrollPos.scrollYProgress.get() > 0.2
                 ? stickyDinoPositions[hoverRandomPositionIndex].rotate
                 : 0
           }}
