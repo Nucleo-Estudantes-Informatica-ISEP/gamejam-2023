@@ -132,8 +132,8 @@ import Sponsor from './Sponsor.astro';
     let x, y;
 
     do {
-      x = Math.floor(Math.random() * window.innerWidth);
-      y = Math.floor(Math.random() * window.innerHeight);
+      x = Math.floor(Math.random() * window.innerWidth - pacman.getBoundingClientRect().width * 2);
+      y = Math.floor(Math.random() * window.innerHeight - pacman.getBoundingClientRect().width * 2);
 
       colidesWithSponsorOrBorder = colidesWithAny(
         {
@@ -150,13 +150,6 @@ import Sponsor from './Sponsor.astro';
     } while (colidesWithSponsorOrBorder || colidesWithPacman);
 
     return { x, y };
-  };
-
-  const colidesWithSponsors = ({ x, y, width }, sponsors) => {
-    for (let i = 0; i < sponsors.length; i++)
-      if (colides({ x, y, width }, sponsors[i])) return true;
-
-    return false;
   };
 
   const colidesWithViewport = ({ x, y, width }) => {
