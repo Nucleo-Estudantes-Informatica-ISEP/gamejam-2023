@@ -9,7 +9,7 @@ import Sponsor from './Sponsor.astro';
   <Header id="header">Patrocinadores</Header>
   <div
     id="container"
-    class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-4 py-12 relative"
+    class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-3 py-12 relative"
   >
     <img
       id="pacman"
@@ -28,6 +28,12 @@ import Sponsor from './Sponsor.astro';
     <Sponsor />
     <Sponsor />
     <Sponsor />
+  </div>
+  <Header id="header">Agradecimentos</Header>
+  <div
+    class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-3 py-12 relative"
+  >
+    <Sponsor />
     <Sponsor />
     <Sponsor />
   </div>
@@ -45,6 +51,7 @@ import Sponsor from './Sponsor.astro';
   document.addEventListener('keydown', (event) => {
     event.preventDefault();
     if (event.key === 'ArrowUp' || event.key === 'w' || event.key === 'k') {
+      pacman.style.rotate = '-90deg';
       if (
         colidesWithAny(
           {
@@ -57,8 +64,8 @@ import Sponsor from './Sponsor.astro';
       )
         return;
       pacman.style.top = `${pacman.offsetTop - STEP}px`;
-      pacman.style.rotate = '-90deg';
     } else if (event.key === 'ArrowDown' || event.key === 's' || event.key === 'j') {
+      pacman.style.rotate = '90deg';
       if (
         colidesWithAny(
           {
@@ -71,8 +78,8 @@ import Sponsor from './Sponsor.astro';
       )
         return;
       pacman.style.top = `${pacman.offsetTop + STEP}px`;
-      pacman.style.rotate = '90deg';
     } else if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'h') {
+      pacman.style.rotate = '180deg';
       if (
         colidesWithAny(
           {
@@ -84,9 +91,9 @@ import Sponsor from './Sponsor.astro';
         )
       )
         return;
-      pacman.style.rotate = '180deg';
       pacman.style.left = `${pacman.offsetLeft - STEP}px`;
     } else if (event.key === 'ArrowRight' || event.key === 'd' || event.key === 'l') {
+      pacman.style.rotate = '0deg';
       if (
         colidesWithAny(
           {
@@ -99,7 +106,6 @@ import Sponsor from './Sponsor.astro';
       )
         return;
       pacman.style.left = `${pacman.offsetLeft + STEP}px`;
-      pacman.style.rotate = '0deg';
     }
     checkFoodColision();
   });
@@ -146,24 +152,21 @@ import Sponsor from './Sponsor.astro';
     return { x, y };
   };
 
-  const colidesWithSponsors = () => {
+  const colidesWithSponsors = ({ x, y, width }, sponsors) => {
     for (let i = 0; i < sponsors.length; i++)
       if (colides({ x, y, width }, sponsors[i])) return true;
 
     return false;
   };
 
-  const colidesWithViewport = () => {
+  const colidesWithViewport = ({ x, y, width }) => {
     if (x < 0 || x > window.innerWidth - width * 2 || y < 0 || y > window.innerHeight - width * 2)
       return true;
     return false;
   };
 
   const colidesWithAny = ({ x, y, width }, sponsors) => {
-    if (colidesWithSponsors()) return true;
-    if (colidesWithViewport()) return true;
-
-    //if (y > header.getBoundingClientRect().y) return true;
+    if (colidesWithViewport({ x, y, width })) return true;
     return false;
   };
 
