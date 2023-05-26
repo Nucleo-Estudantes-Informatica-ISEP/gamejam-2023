@@ -32,7 +32,7 @@ const Judges: React.FC = () => {
       <JudgeItem
         name="Marílio Cardoso"
         description="Professor Adjunto e sub-diretor do DEI"
-        image="/judges/marilio.jpg"
+        image="/judges/marilio.jpeg"
         sectionHovered={width < 768 ? false : sectionHovered}
         isLeft={true}
         overDescription="Licenciado em Engenharia Eletrotécnica. Experiência em eficiência energética e sistemas educativos inovadores. Principais interesses: Aprendizado de programação, sistemas educacionais inovadores e soluções centradas no ensino de ciência da computação e multimedia."
