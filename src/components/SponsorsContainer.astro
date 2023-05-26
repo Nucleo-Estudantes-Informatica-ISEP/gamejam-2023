@@ -50,8 +50,8 @@ import Sponsor from './Sponsor.astro';
   const STEP = 24;
 
   document.addEventListener('keydown', (event) => {
-    event.preventDefault();
     if (event.key === 'ArrowUp' || event.key === 'w' || event.key === 'k') {
+      event.preventDefault();
       pacman.style.rotate = '-90deg';
       if (
         colidesWithAny(
@@ -66,6 +66,7 @@ import Sponsor from './Sponsor.astro';
         return;
       pacman.style.top = `${pacman.offsetTop - STEP}px`;
     } else if (event.key === 'ArrowDown' || event.key === 's' || event.key === 'j') {
+      event.preventDefault();
       pacman.style.rotate = '90deg';
       if (
         colidesWithAny(
@@ -80,6 +81,7 @@ import Sponsor from './Sponsor.astro';
         return;
       pacman.style.top = `${pacman.offsetTop + STEP}px`;
     } else if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'h') {
+      event.preventDefault();
       pacman.style.rotate = '180deg';
       if (
         colidesWithAny(
@@ -94,6 +96,7 @@ import Sponsor from './Sponsor.astro';
         return;
       pacman.style.left = `${pacman.offsetLeft - STEP}px`;
     } else if (event.key === 'ArrowRight' || event.key === 'd' || event.key === 'l') {
+      event.preventDefault();
       pacman.style.rotate = '0deg';
       if (
         colidesWithAny(
