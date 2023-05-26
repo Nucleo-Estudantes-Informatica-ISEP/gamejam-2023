@@ -40,9 +40,9 @@ const JudgeItem: React.FC<JudgeItemProps> = ({
         viewport={{ once: true }}
         className={`bg-background-light max-w-xs w-full rounded-lg px-4 py-6 cursor-pointer z-0 duration-100 ease-in-out 
         ${isHovered && 'shadow-intense-shadow'}`}>
-        <div className="flex flex-col items-start min-h-fit h-[21rem] gap-6">
+        <div className="flex flex-col items-start min-h-fit h-[24rem] gap-6">
           <img
-            className="rounded-md w-full aspect-[25/23] justify-center items-center mx-auto "
+            className="rounded-md w-full aspect-[23/25] justify-center items-center mx-auto "
             src={image}
             alt={name}
           />
