@@ -9,10 +9,10 @@ const Loading: React.FC = () => {
       <div className="w-5/6 md:w-3/4 h-8 bg-gray-700 rounded-full my-8">
         <motion.div
           animate={{
-            width: ['0%', '20%', '25%', '50%', '55%', '70%', '85%', '99%']
+            width: ['0%', '20%', '25%', '50%', '55%', '70%', '85%', '98%']
           }}
           transition={{
-            duration: 60,
+            duration: 90,
             ease: 'linear'
           }}
           className="w-full h-full bg-gradient-to-r from-secondary to-primary rounded-full"></motion.div>
