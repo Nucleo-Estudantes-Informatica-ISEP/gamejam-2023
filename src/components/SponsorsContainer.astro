@@ -4,12 +4,11 @@ import Sponsor from './Sponsor.astro';
 ---
 
 <section
-  class="flex items-center gap-8 justify-center flex-col gap-y-12 text-white font-misterPixel uppercase w-full"
+  class="flex items-center gap-8 justify-center flex-col gap-y-8 text-white font-misterPixel uppercase w-full"
 >
-  <Header id="header">Patrocinadores</Header>
+  <Header>Patrocinadores</Header>
   <div
-    id="container"
-    class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-3 py-12 relative"
+    class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-8 md:gap-y-32 justify-items-center items-center lg:grid-cols-3 py-12 relative"
   >
     <img
       id="pacman"
@@ -31,7 +30,7 @@ import Sponsor from './Sponsor.astro';
   </div>
   <Header id="header">Agradecimentos</Header>
   <div
-    class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-4 py-12 relative"
+    class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-8 md:gap-y-32 justify-items-center items-center lg:grid-cols-4 relative"
   >
     <Sponsor image={'/sponsors/dei.png'} , ref={'https://www.dei.isep.ipp.pt/'} />
     <Sponsor image={'/sponsors/aeisep.png'} , ref={'https://aeisep.pt/'} />
@@ -44,8 +43,6 @@ import Sponsor from './Sponsor.astro';
   const pacman = document.getElementById('pacman');
   const sponsors = document.querySelectorAll('#sponsor');
   const food = document.getElementById('food');
-  const container = document.getElementById('container');
-  const header = document.getElementById('header');
 
   const STEP = 24;
 
