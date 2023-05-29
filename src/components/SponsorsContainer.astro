@@ -25,14 +25,14 @@ import Sponsor from './Sponsor.astro';
     <Sponsor image={'/sponsors/gilt.png'} , ref={'https://gilt.isep.ipp.pt/'} />
     <Sponsor image={'/sponsors/fabamaq.png'} , ref={'https://www.fabamaq.com/en'} />
     <Sponsor image={'/sponsors/infinity_games.png'} , ref={'https://infinitygames.io/'} />
-    <Sponsor image={'/sponsors/confeitaria-moura.png'} , ref={'https://confeitariamoura.pt/'} />
-    <Sponsor image={'/sponsors/dominos.png'} , ref={'https://www.dominospizza.pt/'} />
-    <Sponsor image={'/sponsors/doce-alto.jpg'} , ref={'https://docealto.pt/'} />
   </div>
   <Header id="header">Agradecimentos</Header>
   <div
-    class="flex flex-col md:grid md:grid-cols-2 gap-x-24 w-full gap-y-0 md:gap-y-32 justify-items-center items-center lg:grid-cols-4"
+    class="flex flex-col md:flex-row flex-wrap gap-x-24 w-full gap-y-0 md:gap-y-32 justify-center items-center"
   >
+    <Sponsor image={'/sponsors/confeitaria-moura.png'} , ref={'https://confeitariamoura.pt/'} />
+    <Sponsor image={'/sponsors/dominos.png'} , ref={'https://www.dominospizza.pt/'} />
+    <Sponsor image={'/sponsors/doce-alto.jpg'} , ref={'https://docealto.pt/'} />
     <Sponsor image={'/sponsors/dei.png'} , ref={'https://www.dei.isep.ipp.pt/'} />
     <Sponsor image={'/sponsors/isep.png'} , ref={'https://www.isep.ipp.pt/'} />
     <Sponsor image={'/sponsors/unity.png'} , ref={'https://unity.com/'} />
