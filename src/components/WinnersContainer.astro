@@ -1,0 +1,32 @@
+---
+import Header from './Header.astro';
+import Winner from './Winner';
+---
+
+<section
+  class="flex items-center justify-center flex-col gap-y-24 text-white font-misterPixel uppercase"
+>
+  <Header>Vencedores</Header>
+  <article
+    class="flex flex-col lg:grid gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-3"
+  >
+    <Winner
+      name="MEItaverso"
+      image="#"
+      members={['Josefina Almeida', 'jovem', 'jovem', 'jovem', 'jovem']}
+      client:only
+    />
+    <Winner
+      name="team name"
+      image="#"
+      members={['jovem', 'jovem', 'jovem', 'jovem', 'jovem']}
+      client:only
+    />
+    <Winner
+      name="team name"
+      image="#"
+      members={['jovem', 'jovem', 'jovem', 'jovem', 'jovem']}
+      client:only
+    />
+  </article>
+</section>
