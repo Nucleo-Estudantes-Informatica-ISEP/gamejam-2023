@@ -8,7 +8,7 @@ interface WinnerProps {
 
 const Winner: React.FC<WinnerProps> = ({ name, image, members }) => {
   return (
-    <article className="w-[22rem] h-[22rem] select-none flex items-center flex-col justify-between rounded-md relative group/father ">
+    <article className="w-[21rem] h-[21rem] select-none flex items-center flex-col justify-between rounded-md relative group/father ">
       <motion.img
         initial={{ scaleX: 1 }}
         whileHover={{ scaleX: -1 }}

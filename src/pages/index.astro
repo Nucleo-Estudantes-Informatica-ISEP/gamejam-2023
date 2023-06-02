@@ -9,27 +9,15 @@ import AwardsContainer from '../components/AwardsContainer.astro';
 import ComingSoon from '../components/ComingSoon.astro';
 import Footer from '../components/Footer.astro';
 import JudgesContainer from '../components/JudgesContainer.astro';
+import PhotosContainer from '../components/PhotosContainer.astro';
 import Registration from '../components/Registration.astro';
 import ScheduleContainer from '../components/ScheduleContainer.astro';
 import SponsorsContainer from '../components/SponsorsContainer.astro';
 import WinnersContainer from '../components/WinnersContainer.astro';
-
-import { Icon } from 'astro-icon';
 ---
 
 <Layout title="Gamejam 2023">
-  <div class="relative min-h-screen">
-    <Hero client:only />
-    <a
-      class="animate-bounce text-white absolute bottom-6 flex flex-col items-center z-20 w-full hover:drop-shadow-buttonShadow transition-shadow duration-100"
-      href="#registration-button"
-    >
-      <h2 class="texte-2xl md:text-3xl text-white font-misterPixel mb-2 font-black">
-        Inscreve-te já!
-      </h2>
-      <Icon class="w-8 h-8 md:w-14 md:h-14" pack="bi" name="caret-down-fill" />
-    </a>
-  </div>
+  <Hero client:only />
 </Layout>
 <Container>
   <ComingSoon />
@@ -39,6 +27,7 @@ import { Icon } from 'astro-icon';
   <JudgesContainer />
   <SponsorsContainer />
   <WinnersContainer />
+  <PhotosContainer />
   <Loading client:only />
 </Container>
 <Footer />
