@@ -1,17 +1,15 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+const N_OF_FILES = 21;
+
+const photos: JSX.Element[] = [];
+
+for (let i = 1; i <= N_OF_FILES; i++)
+  photos.push(<img src={`/event/${i}.webp`} className="w-full h-full aspect-[3/2]" />);
+
 const Photos: React.FC = () => {
   const [current, setCurrent] = useState<number>(2);
-
-  const photos = [
-    <img src="/event/image1.webp" className="w-full h-full aspect-[3/2]" />,
-    <img src="/event/image2.webp" className="w-full h-full aspect-[3/2]" />,
-    <img src="/event/image2.webp" className="w-full h-full aspect-[3/2]" />,
-    <img src="/event/image2.webp" className="w-full h-full aspect-[3/2]" />,
-    <img src="/event/image2.webp" className="w-full h-full aspect-[3/2]" />,
-    <img src="/event/image2.webp" className="w-full h-full aspect-[3/2]" />
-  ];
 
   function previous() {
     if (current === 0) setCurrent(photos.length - 1);
@@ -26,9 +24,9 @@ const Photos: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       next();
-    }, 5000);
+    }, 10000);
     return () => clearInterval(interval);
-  });
+  }, [current]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -47,7 +45,8 @@ const Photos: React.FC = () => {
             key={current - 2 + i}
             animate={{
               translateY: i === 2 ? '2px' : '0',
-              left: i < 2 ? 0 : i === 2 ? '25%' : '50%'
+              left: i < 2 ? 0 : i === 2 ? '25%' : '50%',
+              scale: i === 2 ? 1.1 : 1
             }}
             transition={{
               duration: 0.5,
@@ -65,19 +64,17 @@ const Photos: React.FC = () => {
             {photos[(photos.length + current - 2 + i) % photos.length]}
           </motion.article>
         ))}
-      </section>
-      <div className="flex items-center justify-center w-full gap-x-4 my-4">
         <button
           onClick={previous}
-          className="px-4 py-2 rounded-full bg-slate-400 uppercase font-black text-2xl border-2 border-slate-700 hover:brightness-90 transition-all duration-100">
+          className="absolute z-30 px-4 top-1/2 -translate-y-1/2 py-2 rounded-full bg-white  text-black text-center uppercase font-black text-2xl border-2 border-slate-700 hover:brightness-90 transition-all duration-100">
           &lt;
         </button>
         <button
           onClick={next}
-          className="px-4 py-2 rounded-full bg-slate-400 uppercase font-black text-2xl border-2 border-slate-700 hover:brightness-90 transition-all duration-100">
+          className="absolute z-30 right-0 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full bg-white  text-black text-center uppercase font-black text-2xl border-2 border-slate-700 hover:brightness-90 transition-all duration-100">
           &gt;
         </button>
-      </div>
+      </section>
     </div>
   );
 };
