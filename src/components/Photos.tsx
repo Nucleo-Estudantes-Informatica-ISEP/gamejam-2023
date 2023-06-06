@@ -7,12 +7,13 @@ const N_OF_FILES = 93;
 const photos: JSX.Element[] = [];
 
 for (let i = 1; i <= N_OF_FILES; i++)
-  photos.push(<img src={`/event/${i}.webp`} className="w-full aspect-[3/2]" />);
+  photos.push(<img src={`/event/${i}.webp`} className="w-full mx-auto aspect-[3/2]" />);
 
 const PHOTOS_BREAKPOINT = 1024;
 
 const Photos: React.FC = () => {
   const [current, setCurrent] = useState<number>(2);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   function previous() {
     if (current === 0) setCurrent(photos.length - 1);
@@ -26,10 +27,10 @@ const Photos: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      next();
+      if (!isHovered) next();
     }, 10000);
     return () => clearInterval(interval);
-  }, [current]);
+  }, [current, isHovered]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -44,21 +45,23 @@ const Photos: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <section className="w-full h-[32rem] relative">
+      <section className="w-full h-[90vh] lg:h-[50vh] relative">
         {Array.from({ length: 5 }, (_, i) => (
           <motion.article
             key={current - 2 + i}
+            onHoverStart={() => setIsHovered(true)}
+            onHoverEnd={() => setIsHovered(false)}
             animate={{
-              translateY: i === 2 ? '2px' : '0',
-              left: width < PHOTOS_BREAKPOINT ? '25%' : i < 2 ? 0 : i === 2 ? '25%' : '50%',
+              left: width < PHOTOS_BREAKPOINT ? '50%' : i < 2 ? 0 : i === 2 ? '25%' : '50%',
               top: width > PHOTOS_BREAKPOINT ? 0 : i < 2 ? 0 : i === 2 ? '25%' : '50%',
+              translateX: width < PHOTOS_BREAKPOINT ? '-50%' : 0,
               scale: i === 2 ? 1.1 : 1
             }}
             whileHover={{
-              scale: i === 2 ? 1.75 : 1
+              scale: i === 2 ? 1.5 : 1
             }}
             whileTap={{
-              scale: i === 2 ? 1.75 : 1
+              scale: i === 2 ? 1.5 : 1
             }}
             transition={{
               duration: 0.5,
@@ -71,7 +74,7 @@ const Photos: React.FC = () => {
                 : i === 0 || i === 4
                 ? 'z-0 blur-sm'
                 : 'z-10 brightness-75 blur-sm'
-            } w-full lg:w-1/2 rounded-lg shadow-xl`}>
+            } w-4/5 lg:w-1/2 rounded-lg shadow-xl`}>
             {photos[(photos.length + current - 2 + i) % photos.length]}
           </motion.article>
         ))}
