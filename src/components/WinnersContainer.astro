@@ -10,8 +10,18 @@ import Winner from './Winner';
   <article
     class="flex flex-col lg:grid gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-3"
   >
-    <Winner name="FrogLand" image="/winners/frogland.webp" client:only />
-    <Winner name="Team Musaranho" image="/winners/team-musaranho.webp" client:only />
-    <Winner name="Trevo 2 Folhas" image="/winners/trevo-2-folhas.webp" client:only />
+    <Winner name="FrogLand" image="/winners/frogland.webp" overlay="/first.png" client:only />
+    <Winner
+      name="Team Musaranho"
+      image="/winners/team-musaranho.webp"
+      overlay="/second.png"
+      client:only
+    />
+    <Winner
+      name="Trevo 2 Folhas"
+      image="/winners/trevo-2-folhas.webp"
+      overlay="/third.png"
+      client:only
+    />
   </article>
 </section>

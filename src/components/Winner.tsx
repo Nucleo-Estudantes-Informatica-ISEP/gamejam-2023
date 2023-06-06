@@ -3,9 +3,10 @@ import { motion } from 'framer-motion';
 interface WinnerProps {
   name: string;
   image: string;
+  overlay: string;
 }
 
-const Winner: React.FC<WinnerProps> = ({ name, image }) => {
+const Winner: React.FC<WinnerProps> = ({ name, image, overlay }) => {
   return (
     <motion.article
       viewport={{ once: true }}
@@ -22,8 +23,8 @@ const Winner: React.FC<WinnerProps> = ({ name, image }) => {
         initial={{ scaleX: 1 }}
         whileHover={{ scaleX: -1 }}
         transition={{ duration: 0.1 }}
-        src="question-mark.png"
-        alt="Super Mario Question mark box"
+        src={overlay}
+        alt="Overlay"
         className="absolute top-0 left-0 z-20 group-hover/father:opacity-0 duration-300 transition-all ease-in-out"
       />
       <img className="absolute top-0 left-0" src={image} alt="First Winner" />
