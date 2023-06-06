@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import useWindowDimensions from '../utils/useWindowDimensions';
 
-const N_OF_FILES = 21;
+const N_OF_FILES = 93;
 
 const photos: JSX.Element[] = [];
 
 for (let i = 1; i <= N_OF_FILES; i++)
-  photos.push(<img src={`/event/${i}.webp`} className="w-full h-full aspect-[3/2]" />);
+  photos.push(<img src={`/event/${i}.webp`} className="w-full aspect-[3/2]" />);
+
+const PHOTOS_BREAKPOINT = 1024;
 
 const Photos: React.FC = () => {
   const [current, setCurrent] = useState<number>(2);
@@ -37,16 +40,22 @@ const Photos: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   });
 
+  const { width } = useWindowDimensions();
+
   return (
     <div className="flex flex-col items-center w-full">
-      <section className="h-[32rem] w-full relative">
+      <section className="w-full h-[32rem] relative">
         {Array.from({ length: 5 }, (_, i) => (
           <motion.article
             key={current - 2 + i}
             animate={{
               translateY: i === 2 ? '2px' : '0',
-              left: i < 2 ? 0 : i === 2 ? '25%' : '50%',
+              left: width < PHOTOS_BREAKPOINT ? '25%' : i < 2 ? 0 : i === 2 ? '25%' : '50%',
+              top: width > PHOTOS_BREAKPOINT ? 0 : i < 2 ? 0 : i === 2 ? '25%' : '50%',
               scale: i === 2 ? 1.1 : 1
+            }}
+            whileHover={{
+              scale: i === 2 ? 1.75 : 1
             }}
             transition={{
               duration: 0.5,
@@ -59,19 +68,18 @@ const Photos: React.FC = () => {
                 : i === 0 || i === 4
                 ? 'z-0 blur-sm'
                 : 'z-10 brightness-75 blur-sm'
-            }
-            w-1/2 rounded-lg shadow-xl`}>
+            } w-1/2 rounded-lg shadow-xl`}>
             {photos[(photos.length + current - 2 + i) % photos.length]}
           </motion.article>
         ))}
         <button
           onClick={previous}
-          className="absolute z-30 px-4 top-1/2 -translate-y-1/2 py-2 rounded-full bg-white  text-black text-center uppercase font-black text-2xl border-2 border-slate-700 hover:brightness-90 transition-all duration-100">
+          className="absolute z-30 px-4 -top-8 lg:left-0 rotate-90 lg:rotate-0 -translate-x-1/2 lg:translate-x-0 left-1/2 lg:top-1/2 lg:-translate-y-1/2 py-2 rounded-full bg-white text-black text-center uppercase font-black text-2xl border-2 border-slate-700 hover:brightness-90 transition-all duration-100">
           &lt;
         </button>
         <button
           onClick={next}
-          className="absolute z-30 right-0 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full bg-white  text-black text-center uppercase font-black text-2xl border-2 border-slate-700 hover:brightness-90 transition-all duration-100">
+          className="absolute z-30 lg:right-0 top-full rotate-90 lg:rotate-0 translate-x-1/2 lg:translate-x-0 right-1/2 lg:top-1/2 lg:-translate-y-1/2 px-4 py-2 rounded-full bg-white text-black text-center uppercase font-black text-2xl border-2 border-slate-700 hover:brightness-90 transition-all duration-100">
           &gt;
         </button>
       </section>

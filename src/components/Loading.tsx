@@ -6,17 +6,40 @@ const Loading: React.FC = () => {
       <h1 className="font-black uppercase text-5xl md:text-6xl lg:text-[9rem] text-primary font-misterPixel drop-shadow-whiteStrokeShadow">
         Loading
       </h1>
-      <div className="w-5/6 md:w-3/4 h-8 bg-gray-700 rounded-full my-8">
+      <motion.div
+        whileInView={{
+          scale: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+          opacity: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+        }}
+        viewport={{ once: true }}
+        transition={{
+          duration: 5.5
+        }}
+        className="w-5/6 md:w-3/4 h-8 bg-gray-700 rounded-full my-8">
         <motion.div
-          animate={{
-            width: ['0%', '20%', '25%', '50%', '55%', '70%', '85%', '98%', '100%']
+          viewport={{ once: true }}
+          whileInView={{
+            width: ['0%', '25%', '50%', '70%', '85%', '98%', '100%']
           }}
           transition={{
-            duration: 90,
+            duration: 5,
             ease: 'linear'
           }}
           className="w-full h-full bg-gradient-to-r from-secondary to-primary rounded-full"></motion.div>
-      </div>
+      </motion.div>
+      <motion.h1
+        className="-top-24 text-white font-black text-5xl md:text-6xl lg:text-[9rem] text-center font-misterPixel uppercase drop-shadow-primaryStrokeShadow"
+        whileInView={{
+          scale: [0, 1],
+          opacity: [0, 1]
+        }}
+        viewport={{ once: true }}
+        transition={{
+          delay: 5,
+          duration: 0.5
+        }}>
+        Até para o ano!
+      </motion.h1>
     </section>
   );
 };
