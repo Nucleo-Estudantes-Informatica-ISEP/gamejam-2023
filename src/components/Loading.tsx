@@ -28,7 +28,7 @@ const Loading: React.FC = () => {
           className="w-full h-full bg-gradient-to-r from-secondary to-primary rounded-full"></motion.div>
       </motion.div>
       <motion.h1
-        className="absolute -bottom-24 text-white font-black text-5xl md:text-6xl lg:text-[9rem] text-center font-misterPixel uppercase drop-shadow-primaryStrokeShadow"
+        className="absolute bottom-16 md:-bottom-24 text-white font-black text-5xl md:text-6xl lg:text-[9rem] text-center font-misterPixel uppercase drop-shadow-primaryStrokeShadow"
         initial={{
           scale: 0,
           opacity: 0

@@ -10,7 +10,6 @@ const Winner: React.FC<WinnerProps> = ({ name, image }) => {
     <motion.article
       viewport={{ once: true }}
       whileInView={{
-        left: ['100%', '0%'],
         scale: [0, 1],
         opacity: [0, 1]
       }}
