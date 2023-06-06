@@ -1,4 +1,5 @@
 ---
+import Container from '../layouts/Container.astro';
 import Layout from '../layouts/Layout.astro';
 
 import Hero from '../components/Hero';
@@ -11,7 +12,7 @@ import JudgesContainer from '../components/JudgesContainer.astro';
 import Registration from '../components/Registration.astro';
 import ScheduleContainer from '../components/ScheduleContainer.astro';
 import SponsorsContainer from '../components/SponsorsContainer.astro';
-import Container from '../layouts/Container.astro';
+import WinnersContainer from '../components/WinnersContainer.astro';
 ---
 
 <Layout title="Gamejam 2023">
@@ -24,6 +25,7 @@ import Container from '../layouts/Container.astro';
   <AwardsContainer />
   <JudgesContainer />
   <SponsorsContainer />
+  <WinnersContainer />
   <Loading client:only />
 </Container>
 <Footer />

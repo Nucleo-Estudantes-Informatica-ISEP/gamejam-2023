@@ -1,0 +1,27 @@
+---
+import Header from './Header.astro';
+import Winner from './Winner';
+---
+
+<section
+  class="flex items-center justify-center flex-col gap-y-24 text-white font-misterPixel uppercase"
+>
+  <Header>Vencedores</Header>
+  <article
+    class="flex flex-col lg:grid gap-x-24 w-full gap-y-32 justify-items-center items-center lg:grid-cols-3"
+  >
+    <Winner name="FrogLand" image="/winners/frogland.webp" overlay="/first.png" client:only />
+    <Winner
+      name="Team Musaranho"
+      image="/winners/team-musaranho.webp"
+      overlay="/second.png"
+      client:only
+    />
+    <Winner
+      name="Trevo 2 Folhas"
+      image="/winners/trevo-2-folhas.webp"
+      overlay="/third.png"
+      client:only
+    />
+  </article>
+</section>
