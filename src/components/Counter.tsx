@@ -4,7 +4,6 @@ import { motion, useInView, useScroll } from 'framer-motion';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
 import paddingNumber from '../utils/paddingNumber';
-import dinoImage from '/dino.gif';
 
 import useDinoComingSoonAnimation from '../hooks/useDinoComingSoonAnimation';
 import useHoverCounter from '../hooks/useHoverCounter';
@@ -89,7 +88,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
           transition={dinosaurTransition}
           animate={dinosaurAnimation}
           className="w-24 lg:w-52 select-none z-20">
-          <img className="drop-shadow-primaryStrokeShadow" src={dinoImage} alt="dinosaur" />
+          <img className="drop-shadow-primaryStrokeShadow" src={'/dino.gif'} alt="dinosaur" />
         </motion.div>
         <motion.div
           animate={{
@@ -114,7 +113,7 @@ const Counter: React.FC<Props> = ({ targetDate }) => {
           }}
           className="w-24 md:w-40 lg:w-52 select-none"
           style={{ position: 'fixed' }}>
-          <img src={dinoImage} alt="dinosaur" />
+          <img src={'/dino.gif'} alt="dinosaur" />
         </motion.div>
         <ReactCanvasConfetti
           particleCount={150}
