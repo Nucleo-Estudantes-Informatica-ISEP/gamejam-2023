@@ -57,6 +57,9 @@ const Photos: React.FC = () => {
             whileHover={{
               scale: i === 2 ? 1.75 : 1
             }}
+            whileTap={{
+              scale: i === 2 ? 1.75 : 1
+            }}
             transition={{
               duration: 0.5,
               type: 'spring',
@@ -68,7 +71,7 @@ const Photos: React.FC = () => {
                 : i === 0 || i === 4
                 ? 'z-0 blur-sm'
                 : 'z-10 brightness-75 blur-sm'
-            } w-1/2 rounded-lg shadow-xl`}>
+            } w-full lg:w-1/2 rounded-lg shadow-xl`}>
             {photos[(photos.length + current - 2 + i) % photos.length]}
           </motion.article>
         ))}
