@@ -7,7 +7,18 @@ interface WinnerProps {
 
 const Winner: React.FC<WinnerProps> = ({ name, image }) => {
   return (
-    <article className="w-[21rem] h-[21rem] select-none flex items-center flex-col justify-between rounded-md relative group/father ">
+    <motion.article
+      viewport={{ once: true }}
+      whileInView={{
+        left: ['100%', '0%'],
+        scale: [0, 1],
+        opacity: [0, 1]
+      }}
+      transition={{
+        duration: 0.8,
+        ease: 'easeInOut'
+      }}
+      className="w-[21rem] h-[21rem] select-none flex items-center flex-col justify-between rounded-md relative group/father ">
       <motion.img
         initial={{ scaleX: 1 }}
         whileHover={{ scaleX: -1 }}
@@ -20,7 +31,7 @@ const Winner: React.FC<WinnerProps> = ({ name, image }) => {
       <h1 className="font-black uppercase text-5xl z-10 my-6 w-full text-center drop-shadow-primaryStrokeShadow">
         {name}
       </h1>
-    </article>
+    </motion.article>
   );
 };
 
