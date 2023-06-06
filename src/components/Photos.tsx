@@ -45,7 +45,7 @@ const Photos: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <section className="w-full h-[90vh] lg:h-[50vh] relative">
+      <section className="w-full h-[75vh] lg:h-[50vh] relative">
         {Array.from({ length: 5 }, (_, i) => (
           <motion.article
             key={current - 2 + i}
