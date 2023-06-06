@@ -17,7 +17,7 @@ const Winner: React.FC<WinnerProps> = ({ name, image }) => {
         duration: 0.8,
         ease: 'easeInOut'
       }}
-      className="w-[21rem] h-[21rem] select-none flex items-center flex-col justify-between rounded-md relative group/father ">
+      className="w-72 h-72 md:w-[21rem] md:h-[21rem] select-none flex items-center flex-col justify-between rounded-md relative group/father ">
       <motion.img
         initial={{ scaleX: 1 }}
         whileHover={{ scaleX: -1 }}
