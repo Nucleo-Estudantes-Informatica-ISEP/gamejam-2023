@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
-const N_OF_FILES = 114;
+const N_OF_FILES = 132;
 
 const photos: JSX.Element[] = [];
 
